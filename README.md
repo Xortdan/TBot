@@ -22,6 +22,6 @@ Optionally append 1 or 2 to perform the operation on the selected instance.
 version 0.0.2
 - improved optimization
 
-# In the future I want 
-- add a language selection
+# In the future I want add/change
+- language selection
 - new functions
