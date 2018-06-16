@@ -6,7 +6,7 @@
 		$groupname = "";
 		foreach($groups['data'] as $group)
 		{
-			if($group['sgid']$search)
+			if($group['sgid'] == $search)
 			{
 				$groupname = $group['name'];
 			}

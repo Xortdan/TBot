@@ -41,9 +41,9 @@ if($config[$instance_number]['enable'])
 		
 		function intervaltosecond($interval) 
 		{
-			$interval['hours'] = $interval['hours'] + $interval['days']*24;
-			$interval['minutes'] = $interval['minutes'] + $interval['hours']*60;
-			$interval['seconds'] = $interval['seconds'] + $interval['minutes']*60;
+			$interval['hours']+= $interval['days']*24;
+			$interval['minutes']+= $interval['hours']*60;
+			$interval['seconds']+= $interval['minutes']*60;
 			return $interval['seconds'];
 		}
 
