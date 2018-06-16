@@ -16,7 +16,7 @@ Commands:
 - stop
 - restart
 
-Optionally append 1 or 2 to perform the operation on the selected instance.
+Optionally append 1 or 2 to perform the operation on the selected instance (for example: "./starter.sh start2").
 
 # CHANGELOGS
 version 0.0.2
