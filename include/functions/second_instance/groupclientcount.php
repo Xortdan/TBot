@@ -1,12 +1,12 @@
 <?php 
-function groupname($search)
+	function groupname($search)
 	{
 		global $tsAdmin;
 		global $groups;
 		$groupname = "";
 		foreach($groups['data'] as $group)
 		{
-			if($search == $group['sgid'])
+			if($group['sgid']$search)
 			{
 				$groupname = $group['name'];
 			}

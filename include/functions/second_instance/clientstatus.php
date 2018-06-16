@@ -1,19 +1,19 @@
 <?php 
 
-function groupname2($search)
-{
-	global $tsAdmin;
-	global $groups;
-	$groupname = "";
-	foreach($groups['data'] as $group)
+	function groupname2($search)
 	{
-		if($search == $group['sgid'])
+		global $tsAdmin;
+		global $groups;
+		$groupname = "";
+		foreach($groups['data'] as $group)
 		{
-			$groupname = $group['name'];
+			if($group['sgid'] == $search)
+			{
+				$groupname = $group['name'];
+			}
 		}
+		return $groupname;
 	}
-	return $groupname;
-}
 
 function clientstatus()
 {
