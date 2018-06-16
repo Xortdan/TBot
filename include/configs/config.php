@@ -25,36 +25,36 @@ $config[1]['bot']['speed'] = 1; //bot interval
 
 $config[1]['functions'] = Array('day', 'hour','useronline' ,'register' ,'recordonline' ,'afk' ,'pgroup' ,'banlist' ,'channelscount' ,'visitors');
 
-//1. Dzień
+//1. Day
 	$config['function']['day']['enable'] = false;
 	$config['function']['day']['channel']= 992;  //channel
 	$config['function']['day']['channelname'] = "[DAY].[MONTH].[YEAR]";  //channel name, [DAY], [MONTH], [YEAR]
 	$config['function']['day']['interval']=Array('days' => 1, 'hours' => 0, 'minutes' => 0, 'seconds' => 0);  //interval
 	$config['function']['day']['datazero']= '1970-01-01 00:00:00';
 	
-//2. Godzina
+//2. Hour
 	$config['function']['hour']['enable'] = false;
 	$config['function']['hour']['channel']= 992;  //channel
 	$config['function']['hour']['channelname'] = "[HOUR]:[MINUTES]";  //channel name, [HOUR],[MINUTES]
 	$config['function']['hour']['interval']=Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 5); //interval
 	$config['function']['hour']['datazero']= '1970-01-01 00:00:00';
 	
-//3. Osób online	
+//3. User online	
 	$config['function']['useronline']['enable'] = false;
 	$config['function']['useronline']['channel']= 992;  //channel
 	$config['function']['useronline']['channelname'] = "Jest [ONLINE] [USER]";  //channel name
 	$config['function']['useronline']['interval']=Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 10); //interval
 	$config['function']['useronline']['datazero']= '1970-01-01 00:00:00';
 	
-//4. Rejestracja
+//4. Register
 	$config['function']['register']['enable'] = false;
 	$config['function']['register']['defaultgroup']= 8;  //default group
-	$config['function']['register']['allchannel']=Array(676,677);  //all channels
+	$config['function']['register']['allchannel']=Array(992,993);  //all channels
 	$config['function']['register']['allgroup']=Array(14,15);	//all groups	
 	$config['function']['register']['info'] =Array(
 	//		channel => group
-			676 => 14,
-			677 => 15
+			992 => 14,
+			993 => 15
 	);
 	$config['function']['register']['interval']=Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 0); //interval
 	$config['function']['register']['datazero']= '1970-01-01 00:00:00';
@@ -76,11 +76,12 @@ $config[1]['functions'] = Array('day', 'hour','useronline' ,'register' ,'recordo
 	$config['function']['afk']['datazero']= '1970-01-01 00:00:00';
 
 //7. Poke group
-	$config['function']['pgroup']['enable'] = true;
+	$config['function']['pgroup']['enable'] = false;
 	$config['function']['pgroup']['allgroup'] = Array(8);  //all group
 	$config['function']['pgroup']['message'] =Array(   
 	// group => message
-	8 => "Pamiętaj aby zarejestrować się (rejestracja dostępna w strefie pomocy).");
+	8 => "Pamiętaj aby zarejestrować się (rejestracja dostępna w strefie pomocy)."
+	);
 	$config['function']['pgroup']['interval']=Array('days' => 0, 'hours' => 0, 'minutes' => 20, 'seconds' => 0); //interval
 	$config['function']['pgroup']['datazero']= '1970-01-01 00:00:00';
 	
@@ -97,7 +98,7 @@ $config[1]['functions'] = Array('day', 'hour','useronline' ,'register' ,'recordo
 	$config['function']['channelscount']['interval']=Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 5); //interval
 	$config['function']['channelscount']['datazero']= '1970-01-01 00:00:00';
 	
-//10. visitors 
+//10. Visitors 
 	$config['function']['visitors']['enable'] = false;
 	$config['function']['visitors']['channel'] = 992;  //channel
 	$config['function']['visitors']['channelname'] = "Razem [COUNT]";  //channel name
@@ -118,36 +119,36 @@ $config[2]['bot']['name'] = "#2"; //bot name
 $config[2]['bot']['channel'] =  28; //bot default channel
 $config[2]['bot']['speed'] = 1; //bot interval
 
-$config[2]['functions'] = Array('groupcount', 'privatechannel', 'checkchannels', 'servername', 'clientstatus');
+$config[2]['functions'] = Array('groupclientcount', 'privatechannel', 'checkchannels', 'servername', 'clientstatus');
 
-//11. groupcount
-	$config['function']['groupcount']['enable'] = false;
-	$config['function']['groupcount']['allchannel']=Array(992, 993);  //all channel
-	$config['function']['groupcount']['info'] =Array(
-			993 => Array  //channel
+//11. Group client count
+	$config['function']['groupclientcount']['enable'] = false;
+	$config['function']['groupclientcount']['allchannel']=Array(992, 993);  //all channel
+	$config['function']['groupclientcount']['info'] =Array(
+			992 => Array  //channel
 			(
 			'group' => 30,  //group
 			'channelname' => '[RANG]: [ONLINE] / [MAX]',  //channel name, [RANG] - rang name, [ONLINE] - clients online, [MAX] - server slots
 			'channeldesctopic' => '[center][color=blue][size=20][b][RANG][/b][/size][/color][/center]\n',  //description topic
 			'channeldescription' => '[size=15][b][NUMBER]. [NICK] [STATUS][/b][/size]\n' //description
 			),
-			992 => Array  
+			993 => Array  
 			(
-			'group' => 8,  
+			'group' => 6,  
 			'channelname' => '[RANG]: [ONLINE] / [MAX]', 
 			'channeldesctopic' => '[center][color=blue][size=20][b][RANG][/b][/size][/color][/center]\n',  
 			'channeldescription' => '[size=15][b][NUMBER]. [NICK] [STATUS][/b][/size]\n'
 			)
 		
 	);
-	$config['function']['groupcount']['interval']=Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 5);  //interval
-	$config['function']['groupcount']['datazero']= '1970-01-01 00:00:00';
+	$config['function']['groupclientcount']['interval']=Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 5);  //interval
+	$config['function']['groupclientcount']['datazero']= '1970-01-01 00:00:00';
 	
-//12. private channel
+//12. Private channel
 	$config['function']['privatechannel']['enable'] = false;
-	$config['function']['privatechannel']['clientonchannel'] = 992; //get channel in this channel
+	$config['function']['privatechannel']['clientonchannel'] = 19; //get channel in this channel
 	$config['function']['privatechannel']['needgroup'] = Array(14,15);  //need group to get channel
-	$config['function']['privatechannel']['channelzone'] = 859; //private channel zone
+	$config['function']['privatechannel']['channelzone'] = 857; //private channel zone
 	$config['function']['privatechannel']['admingroup'] = 5;  //admin group
 	$config['function']['privatechannel']['subchannels'] = 2; //subchannels count
 	$config['function']['privatechannel']['channeltopic'] = "#fre"; //channel topic
@@ -157,7 +158,7 @@ $config[2]['functions'] = Array('groupcount', 'privatechannel', 'checkchannels',
 	$config['function']['privatechannel']['interval']=Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 1);  //interval
 	$config['function']['privatechannel']['datazero']= '1970-01-01 00:00:00';
 	
-//13. check channels
+//13. Check channels
 	$config['function']['checkchannels']['enable'] = false;
 	$config['function']['checkchannels']['channelzone'] = 992;  //channel zone
 	$config['function']['checkchannels']['channeltopic'] = "#fre"; //topic name in free channels
@@ -167,13 +168,13 @@ $config[2]['functions'] = Array('groupcount', 'privatechannel', 'checkchannels',
 	$config['function']['checkchannels']['interval']=Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 3);  //interval
 	$config['function']['checkchannels']['datazero']= '1970-01-01 00:00:00';
 	
-//14. server name 
+//14. Server name 
 	$config['function']['servername']['enable'] = false;
 	$config['function']['servername']['channelname'] = "xTrust.pl [ONLINE]/[MAX]";  //channel name
 	$config['function']['servername']['interval']=Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 1);  //interval
 	$config['function']['servername']['datazero']= '1970-01-01 00:00:00';
 	
-//15. client status
+//15. Client status
 	$config['function']['clientstatus']['enable'] = false;
 	$config['function']['clientstatus']['aalgroup'] = Array(27, 30);  //all group
 	$config['function']['clientstatus']['info'] = Array(

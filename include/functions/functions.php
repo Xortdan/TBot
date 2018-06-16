@@ -11,7 +11,7 @@ require_once("first_instance/banlist.php");
 require_once("first_instance/channelscount.php");
 require_once("first_instance/visitors.php");
 
-require_once("second_instance/groupcount.php");
+require_once("second_instance/groupclientcount.php");
 require_once("second_instance/privatechannel.php");
 require_once("second_instance/checkchannels.php");
 require_once("second_instance/servername.php");

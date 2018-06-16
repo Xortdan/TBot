@@ -4,23 +4,20 @@ function pgroup()
 		global $config;
 		global $tsAdmin;
 		global $serverInfo;
+		global $user;
 		$countgroup = $config['function']['pgroup']['allgroup'];
 		$online = $serverInfo['virtualserver_clientsonline'];
 
-		for($i=0; $i<$online; $i++)
+		foreach($user['data'] as $client)
 		{
-			$user = $tsAdmin->clientList("-groups");
-			$user = $user['data'][$i];
-			$groupclient = explode(',', $user['client_servergroups']);	
-			count($groupclient);
-			for($e=0; $e<count($groupclient); $e++)
+			$groupclient = explode(',', $client['client_servergroups']);	
+			foreach($groupclient as $group)
 			{	
 				for($r=0; $r<count($countgroup); $r++)
 				{
-					if($groupclient[$e] == $countgroup[$r])
+					if($group == $countgroup[$r])
 					{
-						echo "tak";
-						$tsAdmin->clientPoke($user['clid'], $config['function']['pgroup']['message'][$countgroup[$r]]);
+						$tsAdmin->clientPoke($client['clid'], $config['function']['pgroup']['message'][$countgroup[$r]]);
 					}
 				}
 			}  	

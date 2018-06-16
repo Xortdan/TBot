@@ -9,64 +9,67 @@ function banlist()
 		$list2 = "";
 		$blist = $tsAdmin->banList();
 		$lban = count($blist);
-		for($i=0; $i<$lban; $i++)
+		if(!empty($blist['data']))
 		{
-			if(empty($blist['data'][$i]['lastnickname']))
+			foreach($blist['data'] as $ban)
 			{
-				continue;
-			}
-			else
-			{
-				if($blist['data'][$i]['duration']>60 && $blist['data'][$i]['duration']<3600)
+				if(empty($ban['lastnickname']))
 				{
-					$duration=$blist['data'][$i]['duration']/60;
-					$duration.=' minut';
-				}
-				else if($blist['data'][$i]['duration']==3600)
-				{
-					$duration=$blist['data'][$i]['duration']/3600;
-					$duration.=' godzina';
-				}
-				else if($blist['data'][$i]['duration']==7200 || $blist['data'][$i]['duration']==10800 || $blist['data'][$i]['duration']== 14400)
-				{
-					$duration=$blist['data'][$i]['duration']/3600;
-					$duration.=' godziny';
-				}
-				else if($blist['data'][$i]['duration']>14400 && $blist['data'][$i]['duration']<86400)
-				{
-					$duration=$blist['data'][$i]['duration']/3600;
-					$duration.=' godzin';
-				}
-				else if($blist['data'][$i]['duration']==86400)
-				{
-					$duration=$blist['data'][$i]['duration']/86400;
-					$duration.=' dzień';
-				}
-				else if($blist['data'][$i]['duration']>86400 && $blist['data'][$i]['duration']<1528550754)
-				{
-					$duration=$blist['data'][$i]['duration']/86400;
-					$duration.=' dni';
-				}
-				else if($blist['data'][$i]['duration']==0)
-				{
-					$duration=' permamentnie';
-				}
-				if($blist['data'][$i]['duration']==0)
-				{
-					$to = "∞";
-					$rem = "∞";
+					continue;
 				}
 				else
 				{
-					$to = $blist['data'][$i]['created']+$blist['data'][$i]['duration'];
-					$to = date("d.m.o G:s",$to);
-				}
+					if($ban['duration']>60 && $ban['duration']<3600)
+					{
+						$duration=$ban['duration']/60;
+						$duration.=' minut';
+					}
+					else if($ban['duration']==3600)
+					{
+						$duration=$ban['duration']/3600;
+						$duration.=' godzina';
+					}
+					else if($ban['duration']==7200 || $ban['duration']==10800 || $ban['duration']== 14400)
+					{
+						$duration=$ban['duration']/3600;
+						$duration.=' godziny';
+					}
+					else if($ban['duration']>14400 && $ban['duration']<86400)
+					{
+						$duration=$ban['duration']/3600;
+						$duration.=' godzin';
+					}
+					else if($ban['duration']==86400)
+					{
+						$duration=$ban['duration']/86400;
+						$duration.=' dzień';
+					}
+					else if($ban['duration']>86400 && $ban['duration']<1528550754)
+					{
+						$duration=$ban['duration']/86400;
+						$duration.=' dni';
+					}
+					else if($ban['duration']==0)
+					{
+						$duration=' permamentnie';
+					}
+					if($ban['duration']==0)
+					{
+						$to = "∞";
+						$rem = "∞";
+					}
+					else
+					{
+						$to = $ban['created']+$ban['duration'];
+						$to = date("d.m.o G:s",$to);
+					}
 		
-				$created = date("j.m.o H:s",$blist['data'][$i]['created']);
-				$list2.='[color=blue][size=12]'.$nban.'.[/size][/color] '.$blist['data'][$i]['lastnickname'].'\nBanujący: [URL=client://0/'.$blist['data'][$i]['invokeruid'].'~'.$blist['data'][$i]['invokername'].']'.$blist['data'][$i]['invokername'].'[/URL]'
-				.'\nPowód: '.$blist['data'][$i]['reason'].'\nCzas trwania: '.$duration
-				.'\nOd: '.$created.'\nDo: '.$to.'\n\n';
-				$nban++;
+					$created = date("j.m.o H:s",$ban['created']);
+					$list2.='[color=blue][size=12]'.$nban.'.[/size][/color] '.$ban['lastnickname'].'\nBanujący: [URL=client://0/'.$ban['invokeruid'].'~'.$ban['invokername'].']'.$ban['invokername'].'[/URL]'
+					.'\nPowód: '.$ban['reason'].'\nCzas trwania: '.$duration
+					.'\nOd: '.$created.'\nDo: '.$to.'\n\n';
+					$nban++;
+				}
 			}
 		}
 		$nban-=1;

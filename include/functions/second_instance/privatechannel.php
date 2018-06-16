@@ -44,6 +44,7 @@ function privatechannel()
 				}
 				else
 				{
+
 					for($i=0; $i<count($userchannelgroup['data']); $i++)
 					{
 						if($config['function']['privatechannel']['admingroup'] == $userchannelgroup['data'][$i]['cgid'])
@@ -59,19 +60,19 @@ function privatechannel()
 			if(!$haschannel)
 			{
 				$channels = $tsAdmin->channelList('-topic');
-				for($i=0; $i<count($channels['data']); $i++)
+				foreach($channels['data'] as $channel)
 				{
-					if($channels['data'][$i]['pid'] == $config['function']['privatechannel']['channelzone'])	
+					if($channel['pid'] == $config['function']['privatechannel']['channelzone'])	
 					{	
 						$free1++;
 						$number1++;
-						if($channels['data'][$i]['channel_topic'] == $config['function']['privatechannel']['channeltopic'])
+						if($channel['channel_topic'] == $config['function']['privatechannel']['channeltopic'])
 						{
 							$channelname = str_replace('[NICK]', $nick, $config['function']['privatechannel']['channelname']);
 							$date = date("d.m.o");
-							$tsAdmin->clientMove($clientid, $channels['data'][$i]['cid']);
-							$tsAdmin->channelGroupAddClient($config['function']['privatechannel']['admingroup'], $channels['data'][$i]['cid'], $clientdbid);
-							$tsAdmin->channelEdit($channels['data'][$i]['cid'], array
+							$tsAdmin->clientMove($clientid, $channel['cid']);
+							$tsAdmin->channelGroupAddClient($config['function']['privatechannel']['admingroup'], $channel['cid'], $clientdbid);
+							$tsAdmin->channelEdit($channel['cid'], array
 							(
 							'channel_topic' => $date,
 							'channel_name' => $number1.". ".$channelname,
@@ -87,7 +88,7 @@ function privatechannel()
 							$number2++;
 							$tsAdmin->channelCreate(array
 								(
-									'cpid' => $channels['data'][$i]['cid'],
+									'cpid' => $channel['cid'],
 									'channel_name' => $number2." ".$config['function']['privatechannel']['subchannelname'], 
 									'channel_flag_permanent' => 1, 
 									'channel_flag_maxclients_unlimited' => 1, 
@@ -106,7 +107,7 @@ function privatechannel()
 				if($free1==$free2)
 				{
 					$tsAdmin->clientPoke($clientid, "Brak wolnych kanałów");
-					$tsAdmin->clientKick($clientid, "channel");
+					//$tsAdmin->clientKick($clientid, "channel");
 				}
 			}
 		}
