@@ -18,6 +18,10 @@ Commands:
 
 Optionally append 1 or 2 to perform the operation on the selected instance.
 
-# CHANGELOG
+# CHANGELOGS
 version 0.0.2
 - improved optimization
+
+# In the future I want 
+- add a language selection
+- new functions
