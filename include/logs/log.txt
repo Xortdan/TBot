@@ -1,0 +1,62 @@
+start
+version: 0.0.2
+17-06-2018 14:56:06
+Turned 0 instance
+-----------------------------
+start
+version: 0.0.2
+17-06-2018 14:58:17
+Turned 0 instance (work 2)
+-----------------------------
+start
+version: 0.0.2
+17-06-2018 16:32:10
+Turned 0 instance (works 2 instances)
+-----------------------------
+stop
+17-06-2018 16:32:14
+-----------------------------
+start core1.php
+version: 0.0.2
+
+17-06-2018 16:32:16
+-----------------------------
+Bot połączony pomyślnie
+
+/\/\ Instancja nr. 1
+/\/\ Aktywnych funkcji: 1
+stop
+17-06-2018 16:32:27
+-----------------------------
+start core1.php
+version: 0.0.2
+
+17-06-2018 16:32:43
+-----------------------------
+Bot połączony pomyślnie
+
+/\/\ Instancja nr. 1
+/\/\ Aktywnych funkcji: 1
+stop
+17-06-2018 16:33:02
+-----------------------------
+start core1.php
+version: 0.0.2
+
+17-06-2018 16:33:05
+-----------------------------
+Bot połączony pomyślnie
+
+/\/\ Instancja nr. 1
+/\/\ Aktywnych funkcji: 1
+stop
+17-06-2018 16:33:38
+-----------------------------
+start core1.php
+version: 0.0.2
+
+17-06-2018 16:33:40
+-----------------------------
+stop
+18-06-2018 19:49:37
+-----------------------------

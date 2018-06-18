@@ -9,6 +9,9 @@ function checkchannels()
 		global $channels;
 		$number = 0;
 		$number2 = 0;
+		$freechannelscount = 0;
+		$descbusy = "";
+		$descfree = "";
 		foreach($channels['data'] as $channel)
 		{
 			$date = date("d.m.o");
@@ -20,7 +23,8 @@ function checkchannels()
 				if($config['function']['checkchannels']['channeltopic'] != $channel['channel_topic'])
 				{
 					$number2++;
-					$setdate = strtotime($channel['channel_topic']);
+					$descbusy .= "[URL=channelid://".$channel['cid']."]".$number."[/URL], ";
+ 					$setdate = strtotime($channel['channel_topic']);
 					$remainingtime = time() - $setdate;
 					$interval = $config['function']['checkchannels']['intervaldelete']*24*60*60;
 					if($interval<=$remainingtime)
@@ -45,6 +49,11 @@ function checkchannels()
 						
 					}
 				}
+				else
+				{
+				$freechannelscount++;
+				$descfree .= "[URL=channelid://".$channel['cid']."]".$number."[/URL], ";				
+				}
 				if(($channel['total_clients'] >= 1) && ($config['function']['checkchannels']['setdate'] == true) && ($channeltopic != $config['function']['checkchannels']['channeltopic']) && ($channeltopic!=$date) &&($channel['pid'] == $config['function']['checkchannels']['channelzone']) )
 				{
 				$tsAdmin->channelEdit($channel['cid'], array
@@ -60,8 +69,14 @@ function checkchannels()
 							(
 							'channel_topic' => $date,
 							));
-							print_r($tsAdmin->channelList());
 			}
 		}
+		$data = str_replace('[COUNT]', $number2, $config['function']['checkchannels']['channelzonename']);
+		$desc = "[b][size=15]Kanały zajęte: ".$descbusy."\nKanały wolne: ".$descfree."[/size][/b]";
+		$tsAdmin->channelEdit($config['function']['checkchannels']['channelzone'], array
+							(
+							'channel_name' => $data,
+							'channel_description' => $desc
+							));
 	}
 ?>

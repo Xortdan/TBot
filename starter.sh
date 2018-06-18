@@ -3,23 +3,29 @@
 
 function start
 {
+php ./include/cache/message.php
+echo start >> ./include/logs/log.txt 
+echo -n 'version: ' >> ./include/logs/log.txt 
+php include/cache/versionecho.php  >> ./include/logs/log.txt 
+echo -e '' >> ./include/logs/log.txt 
+date +"%d-%m-%Y %T" >> ./include/logs/log.txt
+count=0	
+count2=0	
+for (( i=1; $i < 3; i++ ))
+do
+if ! screen -list | grep -q "xTrustBot$i"; then
+screen -AdmS xTrustBot$i php core$i.php
+echo -e $i'\e[32m instance: turned on\e[0m'
+((count++))
+else
+echo -e $i"\e[91m instance is already running!\e[0m"
+((count2++))
+fi
+done
+echo "Turned $count instance"
+echo "Turned $count instance (works $count2 instances)" >> ./include/logs/log.txt
+echo -e '-----------------------------' >> ./include/logs/log.txt
 
-	if ! screen -list | grep -q "xTrustBot1"; then
-	if ! screen -list | grep -q "xTrustBot2"; then
-		screen -AdmS xTrustBot1 php core1.php
-		screen -AdmS xTrustBot2 php core2.php
-		echo start >> ./include/logs/log.txt 
-		echo -n 'version: ' >> ./include/logs/log.txt 
-		php include/cache/versionecho.php  >> ./include/logs/log.txt 
-		echo -e '' >> ./include/logs/log.txt 
-		date +"%d-%m-%Y %T" >> ./include/logs/log.txt
-		echo -e '-----------------------------' >> ./include/logs/log.txt
-		php ./include/cache/message.php
-		echo -e '\n\e[30;48;5;82mBot has been successfully started!\e[0m'
-	fi
-	else
-		echo -e '\n\e[30;48;5;1mBot is already running!\e[0m'
-	fi
 
 }
 
@@ -34,7 +40,6 @@ function start1
 		echo -e '\n' >> ./include/logs/log.txt 
 		date +"%d-%m-%Y %T" >> ./include/logs/log.txt
 		echo -e '-----------------------------' >> ./include/logs/log.txt
-		php core1.php -t 1 >> ./include/logs/log.txt
 		php ./include/cache/message.php
 		echo -e '\n\e[30;48;5;82mFirst bot instance has been successfully started!\e[0m'
 	else

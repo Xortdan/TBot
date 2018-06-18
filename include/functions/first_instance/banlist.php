@@ -75,6 +75,16 @@ function banlist()
 		$nban-=1;
 		$list = "[center][color=blue][size=15][B]Lista banów[/B][/size][/color]\n[size=12][B]Wszystkich: $nban \n\n[/B][/size][/center]";
 		$data = $list.$list2.$footer;
-		$tsAdmin->channelEdit($config['function']['banlist']['channel'], array('channel_description' => $data));
+		
+		$channelname = str_replace('[COUNT]', $nban, $config['function']['banlist']['channel_name']);
+		$tsAdmin->channelEdit($config['function']['banlist']['channel'], array(
+		'channel_description' => $data, 
+		));
+		if($config['function']['banlist']['channel_name_enable'])
+		{
+		$tsAdmin->channelEdit($config['function']['banlist']['channel'], array(
+		'channel_name' =>$channelname
+		));
+		}
 	}
 ?>

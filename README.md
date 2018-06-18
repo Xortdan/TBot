@@ -22,6 +22,11 @@ Optionally append 1 or 2 to perform the operation on the selected instance (for 
 version 0.0.2
 - improved optimization
 
+version 0.0.3
+- improved optimization
+- better config
+- new options in the function of banlist and checkchannels
+
 # In the future I want add/change
 - language selection
 - new functions
