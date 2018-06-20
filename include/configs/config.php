@@ -150,7 +150,6 @@ $config[2]['functions'] = Array('groupclientcount', 'privatechannel', 'checkchan
 //11. Group client count
 $config['function']['groupclientcount'] = Array(
 	'enable' => false,
-	'allchannel' => Array(992, 993),  //all channel
 	'info' => Array(
 			1 => Array  //channel
 			(
@@ -214,7 +213,7 @@ $config['function']['servername'] = Array(
 //15. Client status
 $config['function']['clientstatus'] = Array(
 	'enable' => false,
-	'aalgroup' => Array(27, 30),  //all group
+	'aalgroup' => Array(27, 30),  //all client group id
 	'info' => Array(
 	1 => Array(
 	'dbid' => 2, //user dbid 

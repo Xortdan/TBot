@@ -19,7 +19,6 @@
 		global $footer;
 		global $config;
 		global $tsAdmin;
-		$countchannels = count($config['function']['groupclientcount']['allchannel']);
 		foreach($config['function']['groupclientcount']['info'] as $channel)
 		{	
 		$countclientgroup = 0;
