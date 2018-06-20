@@ -55,13 +55,16 @@ $config['function']['useronline'] = Array(
 //4. Register
 $config['function']['register'] = Array(
 	'enable' => false,
-	'defaultgroup' => 8,  //default group
-	'allchannel' => Array(992,993),  //all channels
 	'allgroup' => Array(14,15),	//all groups	
 	'info' => Array(
-	//		channel => group
-			992 => 14,
-			993 => 15
+	 1 => Array(
+	 'channel' => 992,  //channel id
+	 'group' => 14  //group id
+	 ),
+	 2 => Array(
+	 'channel' => 993,
+	 'group' => 15
+	 )
 	),
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 0), //interval
 	'datazero' => '1970-01-01 00:00:00'
@@ -89,11 +92,12 @@ $config['function']['afk'] = Array(
 
 //7. Poke group
 $config['function']['pgroup'] = Array(
-	'enable' => false,
-	'allgroup' => Array(8),  //all group
-	'message' => Array(   
-	// group => message
-	8 => "Pamiętaj aby zarejestrować się (rejestracja dostępna w strefie pomocy)."
+	'enable' => true,
+	'info' => Array(
+	1 => Array(
+	'group' => 8, //group id
+	'message' => "Pamiętaj aby zarejestrować się (rejestracja dostępna w strefie pomocy)."  //message
+	)
 	),
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 20, 'seconds' => 0), //interval
 	'datazero' => '1970-01-01 00:00:00'
@@ -141,22 +145,24 @@ $config[2]['bot']['name'] = "#2"; //bot name
 $config[2]['bot']['channel'] =  28; //bot default channel
 $config[2]['bot']['speed'] = 1; //bot interval
 
-$config[2]['functions'] = Array('groupclientcount', 'privatechannel', 'checkchannels', 'servername', 'clientstatus');
+$config[2]['functions'] = Array('groupclientcount', 'privatechannel', 'checkchannels', 'servername', 'clientstatus', 'timechannel');
 
 //11. Group client count
 $config['function']['groupclientcount'] = Array(
 	'enable' => false,
 	'allchannel' => Array(992, 993),  //all channel
 	'info' => Array(
-			992 => Array  //channel
+			1 => Array  //channel
 			(
-			'group' => 30,  //group
+			'channel' => 992,  //channel id
+			'group' => 30,  //group id
 			'channelname' => '[RANG]: [ONLINE] / [MAX]',  //channel name, [RANG] - rang name, [ONLINE] - clients online, [MAX] - server slots
 			'channeldesctopic' => '[center][color=blue][size=20][b][RANG][/b][/size][/color][/center]\n',  //description topic
 			'channeldescription' => '[size=15][b][NUMBER]. [NICK] [STATUS][/b][/size]\n' //description
 			),
-			993 => Array  
+			2 => Array  
 			(
+			'channel' => 993,
 			'group' => 6,  
 			'channelname' => '[RANG]: [ONLINE] / [MAX]', 
 			'channeldesctopic' => '[center][color=blue][size=20][b][RANG][/b][/size][/color][/center]\n',  
@@ -218,6 +224,29 @@ $config['function']['clientstatus'] = Array(
 	'channel' => 992)
 	),
 	'channelname' => "[RANG] [NICK] [STATUS]",  //channel name, [RANG], [NICK], [STATUS]
+	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 1),  //interval
+	'datazero' => '1970-01-01 00:00:00'
+);
+
+//16. Time channel
+$config['function']['timechannel'] = Array(
+	'enable' => false,
+	'info' => Array(
+	1 => Array(
+	'channel' => 992,
+	'channelnameon' => "Działa",  //channel name on
+	'channelnameoff' => "Nie działa",  //channel name off
+	'timeon' => "9:54",
+	'timeoff' => "19:51"
+	),
+	2 => Array(
+	'channel' => 993,
+	'channelnameon' => "Działa2", 
+	'channelnameoff' => "Nie działa2",
+	'timeon' => "8:00",
+	'timeoff' => "9:53"
+	)
+	),
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 1),  //interval
 	'datazero' => '1970-01-01 00:00:00'
 );

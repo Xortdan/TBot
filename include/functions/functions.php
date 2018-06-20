@@ -16,4 +16,5 @@ require_once("second_instance/privatechannel.php");
 require_once("second_instance/checkchannels.php");
 require_once("second_instance/servername.php");
 require_once("second_instance/clientstatus.php");
+require_once("second_instance/timechannel.php");
 ?>

@@ -4,13 +4,13 @@ function register()
 		global $tsAdmin;
 		global $config;
 		$isregister = 0;
-		foreach($config['function']['register']['allchannel'] as $channel)
+		foreach($config['function']['register']['info'] as $channel)
 		{
-			$user=$tsAdmin->channelClientList($channel, '-groups -uid');
+			$user=$tsAdmin->channelClientList($channel['channel'], '-groups -uid');
 			if(isset($user['data'][0]))
 			{
 				$clid=$user['data']['0']['clid'];
-				$grou = $config['function']['register']['info'][$channel];
+				$grou = $channel['group'];
 				$dbid=$user['data']['0']['client_database_id'];
 				$groupclient = explode(',', $user['data'][0]['client_servergroups']);
 				foreach($groupclient as $group)
@@ -29,7 +29,7 @@ function register()
 					$tsAdmin->clientPoke($clid, "Zarejestrowano");
 				}
 
-			}
+					}
 		}
 	}
 ?>
