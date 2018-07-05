@@ -1,7 +1,7 @@
 # xTrustBot
 bot for server TeamSpeak 3
 
-Currently, the bot has 16 functions.
+Currently, the bot has 20 functions.
 
 Configuration is located in include/config/config.php
 
