@@ -27,6 +27,9 @@ Second instance
 - youtube channel info
 - welcome message
 
+Thirded instance 
+- help bot (doesn't work properly)
+
 Configuration is located in include/config/config.php
 
 For proper operation of the bot, set chmod 777 to all files (chmod -R 777 /xtrustbot).
