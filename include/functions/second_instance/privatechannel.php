@@ -4,6 +4,7 @@ function privatechannel()
 		global $footer;
 		global $config;
 		global $tsAdmin;
+		global $user;
 		$haschannel = false;
 		$number1 = 0;
 		$number2 = 0;
@@ -11,13 +12,14 @@ function privatechannel()
 		$free2 = 0;
 
 		$hasrang = false;
-		$user=$tsAdmin->channelClientList($config['function']['privatechannel']['clientonchannel'], '-groups -uid');
-		if(isset($user['data'][0]))
-		{	
-			$servergroupclient = explode(',', $user['data'][0]['client_servergroups']);
-			$clientdbid = $user['data'][0]['client_database_id'];
-			$clientid = $user['data'][0]['clid'];
-			$nick = $user['data'][0]['client_nickname'];
+		$clientinchannel = array_keys(array_column($user['data'], 'cid'), $config['function']['privatechannel']['clientonchannel']);
+		if(isset($clientinchannel[0]))
+		{
+			$clientinchannel = $clientinchannel[0];
+			$servergroupclient = explode(',', $user['data'][$clientinchannel]['client_servergroups']);
+			$clientdbid = $user['data'][$clientinchannel]['client_database_id'];
+			$clientid = $user['data'][$clientinchannel]['clid'];
+			$nick = $user['data'][$clientinchannel]['client_nickname'];
 			foreach($servergroupclient as $group)
 			{
 				if(in_array($group, $config['function']['privatechannel']['needgroup']))
@@ -107,7 +109,7 @@ function privatechannel()
 				if($free1==$free2)
 				{
 					$tsAdmin->clientPoke($clientid, "Brak wolnych kanałów");
-					//$tsAdmin->clientKick($clientid, "channel");
+					$tsAdmin->clientKick($clientid, "channel");
 				}
 			}
 		}

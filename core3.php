@@ -9,11 +9,11 @@ global $user;
 global $channels;
 global $groups;
 global $footer;
+//global $loopdate2;
 $footer = "[hr][right][i]".$version."[/i][/right][hr] [right][i][b]xTrustBot[/b][/i]";
 $instance_number = str_replace("core", "", $_SERVER['SCRIPT_NAME']);
 $instance_number = str_replace(".php", "", $instance_number);
 $instance_number = (int) $instance_number;
-$instance_enable = 0;
 if($config[$instance_number]['enable'])
 {
 	$tsAdmin = new ts3admin($config[$instance_number]['server']['ip'], $config[$instance_number]['server']['queryport']);
@@ -26,18 +26,8 @@ if($config[$instance_number]['enable'])
 		$whoami = $tsAdmin->getElement('data', $tsAdmin->whoAmI());
 		$tsAdmin->clientMove($whoami['client_id'] , $config[$instance_number]['bot']['channel']);	
 
-		$instance = count($config[$instance_number]['functions']);
-		for($i=0; $i<$instance; $i++)
-		{
-			$function_name = $config[$instance_number]['functions'][$i];
-			if($config['function'][$function_name]['enable']==true) 
-			{
-				$instance_enable++;
-			}
-		}
 		
 		echo "/\/\ Instancja nr. ".$instance_number."\n";
-		echo "/\/\ Aktywnych funkcji: ".$instance_enable."\n";
 		
 		function intervaltosecond($interval) 
 		{
@@ -63,6 +53,7 @@ if($config[$instance_number]['enable'])
 		while(true)
 		{
 			$loopdate = date('Y-m-d G:i:s');
+			//$loopdate2 = date('Y-m-d G:i:s');
 			
 			$serverInfo = $tsAdmin->getElement('data', $tsAdmin->serverInfo());
 			$online = $serverInfo['virtualserver_clientsonline'] - $serverInfo['virtualserver_queryclientsonline'];
@@ -84,16 +75,14 @@ if($config[$instance_number]['enable'])
 			for($i=0; $i<$instance; $i++)
 			{
 				$function_name = $config[$instance_number]['functions'][$i];
-				if($config['function'][$function_name]['enable']==true) 
-				{
-					if(ready($loopdate, $config['function'][$function_name]['datazero'], intervaltosecond($config['function'][$function_name]['interval'])) == true)
+					if(ready($loopdate, $config['function'][$function_name]['datazero'], 1) == true)
 						{
 							$function_name();
 							$config['function'][$function_name]['datazero'] = $loopdate;
 						}
-				}
 			}
-
+				
+			
 			sleep($config[$instance_number]['bot']['speed']);
 		}
 	}	

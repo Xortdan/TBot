@@ -1,6 +1,6 @@
 <?php 
 function hour()
-	{
+	{	
 		global $config;
 		global $tsAdmin;
 		$dataH = date('H');
@@ -11,6 +11,6 @@ function hour()
 		if(strcmp($check['data']['channel_name'], $data) != 0)
 		{
 			$tsAdmin->channelEdit($config['function']['hour']['channel'], Array('CHANNEL_NAME'=> $data));
-		}
+		} 
 	}
 ?>

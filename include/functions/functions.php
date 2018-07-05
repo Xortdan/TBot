@@ -1,5 +1,7 @@
 <?php 
 require_once("loop.php");
+require_once("helpchannel.php");
+
 require_once("first_instance/day.php");
 require_once("first_instance/hour.php");
 require_once("first_instance/useronline.php");
@@ -17,4 +19,9 @@ require_once("second_instance/checkchannels.php");
 require_once("second_instance/servername.php");
 require_once("second_instance/clientstatus.php");
 require_once("second_instance/timechannel.php");
+require_once("second_instance/imieniny.php");
+require_once("second_instance/monthrecord.php");
+require_once("second_instance/youtube.php");
+require_once("second_instance/welcomemessage.php");
+
 ?>

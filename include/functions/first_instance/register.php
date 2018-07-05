@@ -3,16 +3,18 @@ function register()
 	{
 		global $tsAdmin;
 		global $config;
+		global $user;
 		$isregister = 0;
 		foreach($config['function']['register']['info'] as $channel)
 		{
-			$user=$tsAdmin->channelClientList($channel['channel'], '-groups -uid');
-			if(isset($user['data'][0]))
+			$clientinchannel = array_keys(array_column($user['data'], 'cid'), $channel['channel']);
+			if(isset($clientinchannel[0]))
 			{
-				$clid=$user['data']['0']['clid'];
+				$clientinchannel = $clientinchannel[0];
+				$clid=$user['data'][$clientinchannel]['clid'];
 				$grou = $channel['group'];
-				$dbid=$user['data']['0']['client_database_id'];
-				$groupclient = explode(',', $user['data'][0]['client_servergroups']);
+				$dbid=$user['data'][$clientinchannel]['client_database_id'];
+				$groupclient = explode(',', $user['data'][$clientinchannel]['client_servergroups']);
 				foreach($groupclient as $group)
 				{
 					if(in_array($group, $config['function']['register']['allgroup']))	
@@ -29,7 +31,35 @@ function register()
 					$tsAdmin->clientPoke($clid, "Zarejestrowano");
 				}
 
-					}
+			}
 		}
+		
+		$clientinchannel = array_keys(array_column($user['data'], 'cid'), $config['function']['register']['channeldelgroup']);
+		
+		if(isset($clientinchannel[0])) 
+		{
+			$clientinchannel = $clientinchannel[0];
+			$clid=$user['data'][$clientinchannel]['clid'];
+			$dbid=$user['data'][$clientinchannel]['client_database_id'];
+			$groupclient = explode(',', $user['data'][$clientinchannel]['client_servergroups']);
+			foreach($groupclient as $group)
+			{
+				$grou = array_search($group, $config['function']['register']['allgroup']);
+				if(is_numeric($grou))	
+				{
+					$isregister = 1;
+					$tsAdmin->serverGroupDeleteClient($config['function']['register']['allgroup'][$grou], $dbid);
+					$tsAdmin->clientKick($clid, "channel");	
+					$tsAdmin->clientPoke($clid, "Usunięto rangę");
+					return;
+				}
+			}
+			if($isregister==0)	
+			{
+				$tsAdmin->clientKick($clid, "channel");
+				$tsAdmin->clientPoke($clid, "Nie jesteś zarejestrowany");
+			}
+
+		}  
 	}
 ?>

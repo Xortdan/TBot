@@ -34,6 +34,11 @@ version 0.0.4
 - some functions have been improved
 - new function: time channel
 
+version 0.0.5
+- improved optimization - from now on, only the instance gets some data (including a list of users, a list of channels, groups), because in the past each function downloaded this data, which had negative impact on performance
+- new function: imieniny (for polish users), month record, youtube channel info, welcome message
+- in the clientstatus function, the steam status has been added
+- help bot has been added, but it is not working properly yet
 # In the future I want add/change
 - language selection
 - new functions

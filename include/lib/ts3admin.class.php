@@ -4754,7 +4754,7 @@ class ts3admin {
   * @param	int		$cid		channel id (required only for textchannel)
   * @return	array	data
   */	
-	public function readChatMessage($type = 'textchannel', $keepalive = false, $cid = -1)
+	public function readChatMessage($type = 'textchannel', $keepalive = false, $cid = -1, $interval = 2)
 	{
 		$availTypes = array('textserver', 'textchannel', 'textprivate');
 		$rtnData = array('success' => 0, 'data' => array('invokerid' => '', 'invokeruid' => '', 'invokername' => '', 'msg' => '', 'targetmode' => ''));
@@ -4777,7 +4777,7 @@ class ts3admin {
 		}
 		
 		$this->executeCommand("servernotifyregister event=$type" . ($cid != -1 ? " id=$cid" : "") , null);
-		
+		stream_set_timeout($this->runtime['socket'], $interval);
 		$data = fgets($this->runtime['socket'], 4096);
 		
 		if(!empty($data))
@@ -4785,7 +4785,7 @@ class ts3admin {
 			$rtnData['success'] = 1;
 			$msgData = explode(" ", $data);
 			foreach($msgData as $param)
-			{
+			{	
 				$paramData = explode("=", $param);
 				if(array_key_exists($paramData[0], $rtnData['data']))
 				{

@@ -45,28 +45,33 @@ $config['function']['hour'] = Array(
 	
 //3. User online
 $config['function']['useronline'] = Array(	
-	'enable' => false,
-	'channel'=> 993,  //channel
-	'channelname' => "Jest [ONLINE] [USER]",  //channel name
-	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 10), //interval
+	'enable' => true,
+	'channel'=> 8,  //channel
+	'channelname' => "[cspacer]● Online: [ONLINE]●",  //channel name
+	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 5), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 	
 //4. Register
 $config['function']['register'] = Array(
-	'enable' => false,
-	'allgroup' => Array(14,15),	//all groups	
+	'enable' => true,
+	'allgroup' => Array(14,15,87),	//all groups	
+	'channeldelgroup' => 1061,  //channel id where client can delete registeer group
 	'info' => Array(
 	 1 => Array(
-	 'channel' => 992,  //channel id
-	 'group' => 14  //group id
+	 'group' => 14,  //group id
+	 'channel' => 90  //channel id
 	 ),
 	 2 => Array(
-	 'channel' => 993,
-	 'group' => 15
+	 'group' => 15,
+	 'channel' => 91,
+	 ),
+	 3 => Array(
+	 'group' => 87,
+	 'channel' => 528
 	 )
 	),
-	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 0), //interval
+	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 1), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 	
@@ -145,7 +150,7 @@ $config[2]['bot']['name'] = "#2"; //bot name
 $config[2]['bot']['channel'] =  28; //bot default channel
 $config[2]['bot']['speed'] = 1; //bot interval
 
-$config[2]['functions'] = Array('groupclientcount', 'privatechannel', 'checkchannels', 'servername', 'clientstatus', 'timechannel');
+$config[2]['functions'] = Array('groupclientcount', 'privatechannel', 'checkchannels', 'servername', 'clientstatus', 'timechannel', 'imieniny', 'monthrecord', 'youtube','welcomemessage');
 
 //11. Group client count
 $config['function']['groupclientcount'] = Array(
@@ -176,9 +181,9 @@ $config['function']['groupclientcount'] = Array(
 //12. Private channel
 $config['function']['privatechannel'] = Array(
 	'enable' => false,
-	'clientonchannel' => 19, //get channel in this channel
+	'clientonchannel' => 992, //get channel in this channel
 	'needgroup' => Array(14,15),  //need group to get channel
-	'channelzone' => 857, //private channel zone
+	'channelzone' => 1058, //private channel zone
 	'admingroup' => 5,  //admin group
 	'subchannels' => 2, //subchannels count
 	'channeltopic' => "#fre", //channel topic
@@ -212,19 +217,42 @@ $config['function']['servername'] = Array(
 	
 //15. Client status
 $config['function']['clientstatus'] = Array(
-	'enable' => false,
-	'aalgroup' => Array(27, 30),  //all client group id
+	'enable' => true,
+	'aalgroup' => Array(6, 30),  //all client group id
+	'steamstatus' => true,  //enable steam info
+	'steamapi' => "A3F4695EEF3317F8EE14941692AA7BA6",  //steam api
 	'info' => Array(
 	1 => Array(
 	'dbid' => 2, //user dbid 
-	'channel' => 993), //channel
+	'channel' => 184,  //channel
+	'steamid' => 76561198101162681),  //steamid64
 	2 => Array(
-	'dbid' => 11,
-	'channel' => 992)
+	'dbid' => 7,
+	'channel' => 190,
+	'steamid' => 76561198257069727),
+	3 => Array(
+	'dbid' => 797,
+	'channel' => 187,
+	'steamid' => 76561198088102844),
+	4 => Array(
+	'dbid' => 636,
+	'channel' => 188,
+	'steamid' => 76561197963803454),
+	5 => Array(
+	'dbid' => 8,
+	'channel' => 189,
+	'steamid' => 76561198167928642),
+	6 => Array(
+	'dbid' => 12,
+	'channel' => 186,
+	'steamid' => 76561198345510948),
+	
 	),
-	'channelname' => "[RANG] [NICK] [STATUS]",  //channel name, [RANG], [NICK], [STATUS]
-	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 1),  //interval
-	'datazero' => '1970-01-01 00:00:00'
+	'channelname' => "[cspacer]◥◣━[RANG]┃[NICK]┃[STATUS]━◢◤",  //channel name, [RANG], [NICK], [STATUS]
+	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 15),  //interval
+	'interval2' => Array('days' => 0, 'hours' => 0, 'minutes' => 2, 'seconds' => 0),  //interval user info in description
+	'datazero' => '1970-01-01 00:00:00',
+	'datazero2' => '1970-01-01 00:00:00'
 );
 
 //16. Time channel
@@ -248,5 +276,128 @@ $config['function']['timechannel'] = Array(
 	),
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 1),  //interval
 	'datazero' => '1970-01-01 00:00:00'
+);
+
+//17. Imieniny [for Polish users]
+$config['function']['imieniny'] = Array(
+	'enable' => false,
+	'channel' => 992,  //channel
+	'channelname' => "Imieniny: [NAME]",  //channel name
+	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 1),  //interval
+	'datazero' => '1970-01-01 00:00:00'
+);
+
+//18. Month record
+$config['function']['monthrecord'] = Array(
+	'enable' => true,
+	'channel' => 857,//channel
+	'channelname' => "[cspacer]● Rekord miesiąca: [RECORD] ●",  //channel name
+	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 5), //interval
+	'datazero' => '1970-01-01 00:00:00'
+);
+
+//19. Youtube
+$config['function']['youtube'] = Array(
+	'enable' => true,
+	'youtubeapi' => "AIzaSyDovcc8n_eHnRuTwKItjJLaPkFwG-u7lWk",
+	'channnelname' => "[cspacer]✯[NICK] - [SUBSCOUNT]✯",
+	'info' => Array(
+	1 => Array(
+	'channelid' => 611,
+	'youtubechannel' => "UCswiY-euT4t-0gq-_2dZwKA"
+	)
+	),
+	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 5), //interval
+	'datazero' => '1970-01-01 00:00:00'
+);
+
+//20. Welcome message
+$config['function']['welcomemessage'] = Array(
+	'enable' => false,
+	'message' => "[b]Witaj na naszym serwerze![/b] Teraz jest [online]/[/max] osób! Życzymy miłych rozmów![b][u]Aby korzystać za serwera- zarejestruj się.[/u][b]●",  //channel name
+	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 5), //interval
+	'datazero' => '1970-01-01 00:00:00'
+);
+
+/////////////////////////////////////////
+/////////////HELP CHANNEL/////////////
+/////////////////////////////////////////
+$config[3]['enable'] = false; //help bot enable
+
+$config[3]['server']['ip'] = '127.0.0.1'; //server ip
+$config[3]['server']['port'] = 9987; //server port
+$config[3]['server']['queryport'] = 10011; //server query port
+$config[3]['query']['login'] = 'serveradmin'; //server query name
+$config[3]['query']['password'] = ''; //server query password
+$config[3]['bot']['name'] = "LiveHelp"; //help bot name
+$config[3]['bot']['channel'] =  28; //bot default channel
+$config[3]['bot']['speed'] = 0; //bot interval
+
+$config[3]['functions'] = Array('helpchannel');
+
+//19. Help channel
+$config['function']['helpchannel'] = Array(
+	'channel' => 992,
+	'channelname' => "→ Pomoc (czytaj opis) [STATUS]",
+	'admingroup' => Array(6, 30),
+	'commandlist' => "!komendy",
+	'grouplist' => "!grupy",
+	'adminpokemessage' => "[NICK] potrzebuje pomocy!",
+	'needgroup' => Array(
+	1 => Array(
+	'groupid' => 14,
+	'command' => "!m"
+	),
+	2 => Array(
+	'groupid' => 15,
+	'command' => "!k"
+	)),
+	'servergroup' => Array(19,20,21,22,23,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,88,83),
+	'maxservergroup' => 6,
+	'channeldesctopic' => "[center][size=15][b]Komendy[/b][/size][/center]",
+	'channeldesc' => "[COMMAND]",
+	'info' => Array(
+	1 => Array(
+	'command' => "!poziomy",
+	'message' => "\n[b]	Spis poziomów:[/b]\n	1 poziom - 1 godzina 
+	2 poziom - 2 godziny 
+	3 poziom - 4 godziny 
+	4 poziom - 8 godziny 
+	5 poziom - 12 godziny 
+	6 poziom - 18 godziny 
+	7 poziom - 24 godziny (1 dzień) 
+	8 poziom - 48 godziny (2 dni) 
+	9 poziom - 72 godziny (3 dni) 
+	10 poziom - 120 godziny (5 dni) 
+	11 poziom - 168 godziny (7 dni) 
+	12 poziom - 216 godziny (9 dni) 
+	13 poziom - 264 godziny (11 dni) 
+	14 poziom - 312 godziny (13 dni) 
+	15 poziom - 360 godziny (15 dni) 
+	16 poziom - 432 godziny (18 dni) 
+	17 poziom - 504 godziny (21 dni) 
+	18 poziom - 576 godziny (24 dni) 
+	19 poziom - 648 godziny (27 dni) 
+	20 poziom - 720 godziny (30 dni) 
+	21 poziom - 792 godziny (33 dni) 
+	22 poziom - 864 godziny (36 dni) 
+	23 poziom - 936 godziny (39 dni) 
+	24 poziom - 1008 godziny (42 dni) 
+	25 poziom - 1080 godziny (45 dni) 
+	26 poziom - 1200 godziny (50 dni) 
+	27 poziom - 1320 godziny (55 dni) 
+	28 poziom - 1440 godziny (60 dni) 
+	29 poziom - 1800 godziny (75 dni) 
+	30 poziom - 2160 godziny (90 dni)",
+	'desc' => "lista poziomów"
+	),
+	2 => Array(
+	'command' => "!vip",
+	'message' => "[b]Aby kupić rangę lub kanał VIP, udaj się na xtrust.pl[/b]",
+	'desc' => "informacje o VIP"
+	),
+	),
+	'datazero' => '1970-01-01 00:00:00',
+	'datazeroadmin' => '1970-01-01 00:00:00'
 );
 	?>

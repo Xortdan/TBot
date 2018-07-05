@@ -9,7 +9,7 @@ function recordonline()
 		{
 			if($online>$record)
 			{
-				$ff = fopen("include/cache/record.txt", "w");
+				$ff = fopen("include/cache/month_record.txt", "w");
 				fputs($ff, $online);
 				fclose($ff);
 				$record=$online;
