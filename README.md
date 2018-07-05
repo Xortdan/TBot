@@ -3,6 +3,30 @@ bot for server TeamSpeak 3
 
 Currently, the bot has 20 functions.
 
+First instance
+- day
+- hour
+- users online
+- register
+- record online
+- afk
+- poke groups
+- ban list
+- channels count
+- visitors count
+
+Second instance
+- group clients count
+- get private channel
+- check private channels
+- server name 
+- client status
+- time channel
+- imieniny (for polish users)
+- month record
+- youtube channel info
+- welcome message
+
 Configuration is located in include/config/config.php
 
 For proper operation of the bot, set chmod 777 to all files (chmod -R 777 /xtrustbot).
