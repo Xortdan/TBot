@@ -6,7 +6,6 @@ function helpchannel()
 	global $config;
 	global $tsAdmin;
 	global $first;
-	global $first2;
 	global $correct;
 	global $newinchannel;
 	global $isregisted;
