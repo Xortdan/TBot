@@ -3,13 +3,15 @@ require_once("include/lib/ts3admin.class.php");
 require_once("include/configs/config.php");
 require_once("include/functions/functions.php");
 
-global $serverInfo;	
-global $online;
-global $user;
-global $channels;
-global $groups;
+//global $serverInfo;	
+//global $online;
+//global $user;
+//global $channels;
+//global $groups;
 global $footer;
-//global $loopdate2;
+global $needgroups;
+global $loopdate2;
+$needgroups = "";
 $footer = "[hr][right][i]".$version."[/i][/right][hr] [right][i][b]xTrustBot[/b][/i]";
 $instance_number = str_replace("core", "", $_SERVER['SCRIPT_NAME']);
 $instance_number = str_replace(".php", "", $instance_number);
@@ -52,38 +54,14 @@ if($config[$instance_number]['enable'])
 
 		while(true)
 		{
-			$loopdate = date('Y-m-d G:i:s');
-			//$loopdate2 = date('Y-m-d G:i:s');
+			$loopdate2 = date('Y-m-d G:i:s');
 			
-			$serverInfo = $tsAdmin->getElement('data', $tsAdmin->serverInfo());
-			$online = $serverInfo['virtualserver_clientsonline'] - $serverInfo['virtualserver_queryclientsonline'];
-			$user = $tsAdmin->clientList("-uid -away -voice -times -groups -info -icon -country -ip -badges");
-			$channels = $tsAdmin->channelList("-topic -flags -voice -limits -icon -secondsempty");
-			$groups = $tsAdmin->serverGroupList();
-
-			if($config['bot']['loop']['enable']==true)
-			{
-				if(ready($loopdate, $config['bot']['loop']['datazero'], intervaltosecond($config['bot']['loop']['interval'])) == true)
-				{
-					loop();
-					$config['bot']['loop']['datazero'] = $loopdate;
-				}
-			}
-			
-	
-			$instance = count($config[$instance_number]['functions']);
-			for($i=0; $i<$instance; $i++)
-			{
-				$function_name = $config[$instance_number]['functions'][$i];
-					if(ready($loopdate, $config['function'][$function_name]['datazero'], 1) == true)
-						{
-							$function_name();
-							$config['function'][$function_name]['datazero'] = $loopdate;
-						}
-			}
-				
-			
-			sleep($config[$instance_number]['bot']['speed']);
+			//$serverInfo = $tsAdmin->getElement('data', $tsAdmin->serverInfo());
+			//$online = $serverInfo['virtualserver_clientsonline'] - $serverInfo['virtualserver_queryclientsonline'];
+			//$user = $tsAdmin->clientList("-uid -away -voice -times -groups -info -icon -country -ip -badges");
+			//$channels = $tsAdmin->channelList("-topic -flags -voice -limits -icon -secondsempty");
+			//$groups = $tsAdmin->serverGroupList();
+			helpchannel();
 		}
 	}	
 	else

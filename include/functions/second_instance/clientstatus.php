@@ -1,20 +1,5 @@
 <?php 
 
-	function groupname2($search)
-	{
-		global $tsAdmin;
-		global $groups;
-		$groupname = "";
-		foreach($groups['data'] as $group)
-		{
-			if($group['sgid'] == $search)
-			{
-				$groupname = $group['name'];
-			}
-		}
-		return $groupname;
-	}
-
 function clientstatus()
 {
 	global $config;
@@ -51,7 +36,7 @@ function clientstatus()
 						{
 							$status = "OFFLINE";
 						}
-					$channelname = str_replace('[RANG]', groupname2($group), $config['function']['clientstatus']['channelname']);
+					$channelname = str_replace('[RANG]', groupname($group), $config['function']['clientstatus']['channelname']);
 					$channelname = str_replace('[NICK]', $user['client_nickname'], $channelname);
 					$channelname = str_replace('[STATUS]', $status, $channelname);
 					$tsAdmin->channelEdit($number['channel'], array('channel_name' => $channelname));

@@ -24,4 +24,19 @@ require_once("second_instance/monthrecord.php");
 require_once("second_instance/youtube.php");
 require_once("second_instance/welcomemessage.php");
 
+function groupname($search)
+	{
+		global $tsAdmin;
+		global $groups;
+		$groups = $tsAdmin->serverGroupList();
+		$groupname = "";
+		foreach($groups['data'] as $group)
+		{
+			if($group['sgid'] == $search)
+			{
+				$groupname = $group['name'];
+			}
+		}
+		return $groupname;
+	}
 ?>

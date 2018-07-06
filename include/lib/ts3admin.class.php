@@ -4754,7 +4754,7 @@ class ts3admin {
   * @param	int		$cid		channel id (required only for textchannel)
   * @return	array	data
   */	
-	public function readChatMessage($type = 'textchannel', $keepalive = false, $cid = -1, $interval = 2)
+	public function readChatMessage($type = 'textchannel', $keepalive = false, $cid = -1, $interval = 0)
 	{
 		$availTypes = array('textserver', 'textchannel', 'textprivate');
 		$rtnData = array('success' => 0, 'data' => array('invokerid' => '', 'invokeruid' => '', 'invokername' => '', 'msg' => '', 'targetmode' => ''));

@@ -1,7 +1,7 @@
 # xTrustBot
 bot for server TeamSpeak 3
 
-Currently, the bot has 20 functions.
+Currently, the bot has 20 functions + help channel.
 
 First instance
 - day
@@ -27,8 +27,15 @@ Second instance
 - youtube channel info
 - welcome message
 
-Thirded instance 
-- help bot (doesn't work properly)
+Help bot (thirded instance)
+Command
+- commands list
+- poke admins
+- group list
+- add server groups
+- del server groups
+- infomation about client
+- own commands
 
 Configuration is located in include/config/config.php
 
@@ -66,6 +73,10 @@ version 0.0.5
 - new function: imieniny (for polish users), month record, youtube channel info, welcome message
 - in the clientstatus function, the steam status has been added
 - help bot has been added, but it is not working properly yet
+
+version 0.0.6
+- new help bot - now the bot operates in private messages without delays, there is no limit of users using the bot
+
 # In the future I want add/change
 - language selection
 - new functions

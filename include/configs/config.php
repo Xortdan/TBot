@@ -166,7 +166,7 @@ $config['function']['groupclientcount'] = Array(
 			),
 			2 => Array  
 			(
-			'channel' => 993,
+			'channel' => 1058,
 			'group' => 6,  
 			'channelname' => '[RANG]: [ONLINE] / [MAX]', 
 			'channeldesctopic' => '[center][color=blue][size=20][b][RANG][/b][/size][/color][/center]\n',  
@@ -299,12 +299,12 @@ $config['function']['monthrecord'] = Array(
 //19. Youtube
 $config['function']['youtube'] = Array(
 	'enable' => true,
-	'youtubeapi' => "AIzaSyDovcc8n_eHnRuTwKItjJLaPkFwG-u7lWk",
-	'channnelname' => "[cspacer]✯[NICK] - [SUBSCOUNT]✯",
+	'youtubeapi' => "AIzaSyDovcc8n_eHnRuTwKItjJLaPkFwG-u7lWk",  //youtube api
+	'channnelname' => "[cspacer]✯[NICK] - [SUBSCOUNT]✯",  //channel name, [NICK] - youtube nick, [SUBSCOUNT] - subs count
 	'info' => Array(
 	1 => Array(
-	'channelid' => 611,
-	'youtubechannel' => "UCswiY-euT4t-0gq-_2dZwKA"
+	'channelid' => 611,  //channel id
+	'youtubechannel' => "UCswiY-euT4t-0gq-_2dZwKA"  //youtube channel
 	)
 	),
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 5), //interval
@@ -322,7 +322,7 @@ $config['function']['welcomemessage'] = Array(
 /////////////////////////////////////////
 /////////////HELP CHANNEL/////////////
 /////////////////////////////////////////
-$config[3]['enable'] = false; //help bot enable
+$config[3]['enable'] = true; //help bot enable
 
 $config[3]['server']['ip'] = '127.0.0.1'; //server ip
 $config[3]['server']['port'] = 9987; //server port
@@ -331,35 +331,37 @@ $config[3]['query']['login'] = 'serveradmin'; //server query name
 $config[3]['query']['password'] = ''; //server query password
 $config[3]['bot']['name'] = "LiveHelp"; //help bot name
 $config[3]['bot']['channel'] =  28; //bot default channel
-$config[3]['bot']['speed'] = 0; //bot interval
+$config[3]['bot']['speed'] = 1; //bot interval
 
 $config[3]['functions'] = Array('helpchannel');
 
 //19. Help channel
 $config['function']['helpchannel'] = Array(
-	'channel' => 992,
-	'channelname' => "→ Pomoc (czytaj opis) [STATUS]",
-	'admingroup' => Array(6, 30),
-	'commandlist' => "!komendy",
-	'grouplist' => "!grupy",
-	'adminpokemessage' => "[NICK] potrzebuje pomocy!",
-	'needgroup' => Array(
+	'channel' => 992,  //chanel
+	'admingroup' => Array(30),  //admins group
+	'commandlist' => "!komendy", //comand for command list
+	'grouplist' => "!grupy",  //command for group list
+	'adminpokemessage' => "[NICK] potrzebuje pomocy!",  //admin poke message
+	'needgroupall' => Array(14,15),  //all the necessary groups to use bot
+	//register
+	'needgroup' => Array(  
 	1 => Array(
-	'groupid' => 14,
-	'command' => "!m"
+	'groupid' => 14,  //group id
+	'command' => "!m"  //command
 	),
 	2 => Array(
 	'groupid' => 15,
 	'command' => "!k"
 	)),
-	'servergroup' => Array(19,20,21,22,23,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,88,83),
-	'maxservergroup' => 6,
-	'channeldesctopic' => "[center][size=15][b]Komendy[/b][/size][/center]",
-	'channeldesc' => "[COMMAND]",
+	'servergroup' => Array(19,20,21,22,23,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,88,83),  //server group 
+	'maxservergroup' => 6,  //max server group
+	'channeldesctopic' => "[center][size=15][b]Komendy[/b][/size][/center]",  //channel desc topic
+	'channeldesc' => "[COMMAND]",  //channel desc, [COMMAND] - command
+	//new commands
 	'info' => Array(
 	1 => Array(
-	'command' => "!poziomy",
-	'message' => "\n[b]	Spis poziomów:[/b]\n	1 poziom - 1 godzina 
+	'command' => "!poziomy",  //command
+	'message' => "\n[b]	Spis poziomów:[/b]\n	1 poziom - 1 godzina  
 	2 poziom - 2 godziny 
 	3 poziom - 4 godziny 
 	4 poziom - 8 godziny 
@@ -388,7 +390,7 @@ $config['function']['helpchannel'] = Array(
 	27 poziom - 1320 godziny (55 dni) 
 	28 poziom - 1440 godziny (60 dni) 
 	29 poziom - 1800 godziny (75 dni) 
-	30 poziom - 2160 godziny (90 dni)",
+	30 poziom - 2160 godziny (90 dni)",  //description
 	'desc' => "lista poziomów"
 	),
 	2 => Array(
@@ -397,7 +399,7 @@ $config['function']['helpchannel'] = Array(
 	'desc' => "informacje o VIP"
 	),
 	),
-	'datazero' => '1970-01-01 00:00:00',
-	'datazeroadmin' => '1970-01-01 00:00:00'
+	'datazero' => '1970-01-01 00:00:00',  //datazero
+	'datazeroadmin' => '1970-01-01 00:00:00'  //datazero admin
 );
 	?>

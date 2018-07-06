@@ -1,18 +1,4 @@
-<?php 
-	function groupname($search)
-	{
-		global $tsAdmin;
-		global $groups;
-		$groupname = "";
-		foreach($groups['data'] as $group)
-		{
-			if($group['sgid'] == $search)
-			{
-				$groupname = $group['name'];
-			}
-		}
-		return $groupname;
-	}
+<?php
 		
 	function groupclientcount()
 	{

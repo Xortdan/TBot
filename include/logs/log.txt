@@ -40,3 +40,56 @@ version: 0.0.5
 05-07-2018 14:59:19
 Turned 3 instance (works 0 instances)
 -----------------------------
+start core3.php
+version: 0.0.5
+
+05-07-2018 16:22:36
+-----------------------------
+stopstart core3.php
+05-07-2018 16:22:53
+-----------------------------
+start core3.php
+version: 0.0.5
+
+06-07-2018 13:24:36
+-----------------------------
+restart
+06-07-2018 13:27:42
+First instance restarted
+Second instance restarted
+Help bot restarted
+-----------------------------
+restart
+06-07-2018 13:33:44
+First instance restarted
+Second instance restarted
+Help bot restarted
+-----------------------------
+restart
+06-07-2018 13:33:56
+First instance restarted
+Second instance restarted
+Help bot restarted
+-----------------------------
+stop
+06-07-2018 13:35:55
+First instance stopped
+Second instance stopped
+Help bot stopped
+-----------------------------
+start
+version: 0.0.5
+06-07-2018 13:41:19
+Turned 3 instance (works 0 instances)
+-----------------------------
+stopstart core3.php
+06-07-2018 13:41:27
+-----------------------------
+start core3.php
+version: 0.0.5
+
+06-07-2018 14:19:52
+-----------------------------
+stopstart core3.php
+06-07-2018 14:21:54
+-----------------------------
