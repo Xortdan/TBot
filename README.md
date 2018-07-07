@@ -34,7 +34,7 @@ Command
 - group list
 - add server groups
 - del server groups
-- infomation about client
+- infomations about client
 - own commands
 
 Configuration is located in include/config/config.php
