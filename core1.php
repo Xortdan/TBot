@@ -10,7 +10,7 @@ global $user;
 global $channels;
 global $groups;
 global $footer;
-$footer = "[hr][right][i]".$version."[/i][/right][hr] [right][url=https://xtrust.pl][img]https://xtrust.pl/bannerbot.png[/img][/url]";
+$footer = "\n\n[hr][right][i]".$version."[/i][/right][hr] [right][url=https://xtrust.pl][img]https://xtrust.pl/bannerbot.png[/img][/url]";
 $instance_number = str_replace("core", "", $_SERVER['SCRIPT_NAME']);
 $instance_number = str_replace(".php", "", $instance_number);
 $instance_number = (int) $instance_number;

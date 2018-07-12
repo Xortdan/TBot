@@ -6,6 +6,7 @@ function useronline()
 		global $online;
 		global $user;
 		global $serverInfo;
+		global $footer;
 		$list = "[center][size=14][b]Lista osób online[/b][/size][/center][hr][b][size=9]";
 		foreach($user['data'] as $client)
 		{	
@@ -20,7 +21,7 @@ function useronline()
 		$check = $tsAdmin-> channelInfo($config['function']['useronline']['channel']);
 		if(strcmp($check['data']['channel_name'], $data) != 0)
 		{
-			$tsAdmin->channelEdit($config['function']['useronline']['channel'], Array('CHANNEL_NAME'=> $data, 'channel_description' => $list."[/size][/b]"));
+			$tsAdmin->channelEdit($config['function']['useronline']['channel'], Array('CHANNEL_NAME'=> $data, 'channel_description' => $list."[/size][/b]".$footer));
 		}
 	}
 ?>
