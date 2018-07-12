@@ -2,6 +2,7 @@
 require_once("include/lib/ts3admin.class.php");
 require_once("include/configs/config.php");
 require_once("include/functions/functions.php");
+require_once("include/language/".$config['bot']['laguage'].".php");
 
 global $serverInfo;	
 global $online;
@@ -9,7 +10,7 @@ global $user;
 global $channels;
 global $groups;
 global $footer;
-$footer = "[hr][right][i]".$version."[/i][/right][hr] [right][i][b]xTrustBot[/b][/i]";
+$footer = "[hr][right][i]".$version."[/i][/right][hr] [right][url=https://xtrust.pl][img]https://xtrust.pl/bannerbot.png[/img][/url]";
 $instance_number = str_replace("core", "", $_SERVER['SCRIPT_NAME']);
 $instance_number = str_replace(".php", "", $instance_number);
 $instance_number = (int) $instance_number;

@@ -22,23 +22,19 @@
 				
 				if($nick_array['data'])
 				{
-					$status = "[color=green]ONLINE[/color]";
+					$status = "[img]https://xtrust.pl/icon/iconyes.png[/img] [color=green]ONLINE[/color]";
 					$countclientgroup++;
 				}
 				else
 				{
-					$status = "[color=red]OFFLINE[/color]";
+					$status = "[img]https://xtrust.pl/icon/iconnoo.png[/img] [color=red]OFFLINE[/color]";
 				}
-				$description = str_replace('[NICK]', $nick, $channel['channeldescription']);
-				$description = str_replace('[STATUS]', $status, $description);
-				$description = str_replace('[NUMBER]', $r, $description);
-				$list.=$description;
+				$list.="[img]https://www.iconfinder.com/icons/2123927/download/png/20[/img] [size=10][b]".$nick." | ".$status."[/b][/size]\n";
 			}
 			$channelname = str_replace('[ONLINE]', $countclientgroup, $channel['channelname']);
 			$channelname = str_replace('[MAX]', $countclientsnumber, $channelname);
 			$channelname = str_replace('[RANG]', $groupname, $channelname);
-			$channeldesctopic = str_replace('[RANG]', $groupname, $channel['channeldesctopic']);
-			$channeldescription = $channeldesctopic.$list.$footer;
+			$channeldescription = "[size=15][b][color=blue]".$groupname."[/color][/b][/size][hr]\n".$list.$footer;
 			$check = $tsAdmin-> channelInfo($channel['channel']);
 			if(strcmp($channelname, $check['data']['channel_name']) != 0)
 			{

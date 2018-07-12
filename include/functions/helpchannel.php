@@ -7,15 +7,17 @@ function helpchannel()
 	global $tsAdmin;
 	global $first;
 	global $correct;
+	global $footer;
 	global $newinchannel;
 	global $isregisted;
 	global $needgroups;
 	global $loopdate2;
-	global $clientonchannel;
+	global $clientonchannel2;
 	$isregisted = false;
 	$user = $tsAdmin->clientList("-uid -away -voice -times -groups -info -icon -country -ip -badges");
 	$correct = false;
 	$admincount = 0;
+	$admincount2 = 0;
 	$number	= 0;
 	$number2 = 0;
 	$number3 = 0;
@@ -39,7 +41,7 @@ function helpchannel()
 	$desc = $config['function']['helpchannel']['channeldesctopic']."\n".$desc;
 	if(!$first)
 	{
-		$tsAdmin -> channelEdit($config['function']['helpchannel']['channel'], Array('CHANNEL_DESCRIPTION'=> $desc));
+		$tsAdmin -> channelEdit($config['function']['helpchannel']['channel'], Array('CHANNEL_DESCRIPTION'=> $desc.$footer));
 		foreach($config['function']['helpchannel']['needgroup'] as $needgroup)
 		{
 		$arraygroup[] = $needgroup['command'];
@@ -49,22 +51,22 @@ function helpchannel()
 	}
 	$whoami = $tsAdmin->getElement('data', $tsAdmin->whoAmI());
 	
-	$clientinchannel = array_keys(array_column($user['data'], 'cid'), $config['function']['helpchannel']['channel']);
+	$clientonchannel = array_keys(array_column($user['data'], 'cid'), $config['function']['helpchannel']['channel']);
 	
 	
 	//send msg
-	if(!isset($clientinchannel[0]))
+	if(!isset($clientonchannel[0]))
 	{
 		$clientonchannel = Array();
 		sleep($config[3]['bot']['speed']);
 	}
 	else
 	{
-		foreach($clientinchannel as $userid)
+		foreach($clientonchannel as $userid)
 		{
-			if(!isset($clientonchannel[$userid]))
+			if(!isset($clientonchannel2[$userid]))
 			{
-				$clientonchannel[$userid]['userid'] = $userid;
+				$clientonchannel2[$userid]['userid'] = $userid;
 				$clientgroup = explode(',', $user['data'][$userid]['client_servergroups']);
 				foreach($config['function']['helpchannel']['needgroupall'] as $needgroup)
 				{
@@ -83,19 +85,19 @@ function helpchannel()
 		}
 	}
 	
-	foreach($clientonchannel as $userid)
+	foreach($clientonchannel2 as $userid)
 	{
 		$id = $userid['userid'];
 		if($user['data'][$id]['cid'] != $config['function']['helpchannel']['channel'])
 			{
-				unset($clientonchannel[$id]);
+				unset($clientonchannel2[$id]);
 			} 
 	}
 	
 	
 
 
-	if(isset($clientinchannel[0]))
+	if(isset($clientonchannel[0]))
 	{
 		$message = $tsAdmin -> readChatMessage('textprivate', true, -1, $config[3]['bot']['speed']);
 		$msg = $message['data']['msg'];
@@ -150,24 +152,45 @@ function helpchannel()
 									$find = $tsAdmin->clientFind($groupclient['client_nickname']);
 									if($find['data'])
 									{
-										$admincount++;
-										$pokemessage = str_replace('[NICK]', $message['data']['invokername'], $config['function']['helpchannel']['adminpokemessage']);
-										$tsAdmin->clientPoke($find['data'][0]['clid'], $pokemessage);
+										$admin = $tsAdmin-> clientInfo($find['data'][0]['clid']);
+										if(!in_array($admin['data']['cid'], $config['function']['helpchannel']['ignoredonchannel']))
+										{
+											$admincount++;
+											$pokemessage = str_replace('[NICK]', $message['data']['invokername'], $config['function']['helpchannel']['adminpokemessage']);
+											$tsAdmin->clientPoke($find['data'][0]['clid'], $pokemessage);
+										}
+										else
+										{
+											$admincount2++;	
+										}
 									}
 								}
 			
 							}
-							if($admincount == 0)
+							if($admincount == 0 && $admincount2==1)
 							{
-								$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "\n[b]Brak administracji na serwerze[/b]");
+								$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "\n[b]Administrator jest aktualnie zajęty[/b]");
+								return;
+							}
+							else if($admincount == 0 && $admincount2>1)
+							{
+								$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "\n[b]Administratorzy są aktualnie zajęci[/b]");	
+								return;
+							}
+							else if($admincount == 0)
+							{
+								$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "\n[b]Brak administracji na serwerze[/b]");	
+								return;
 							}
 							else if($admincount == 1)
 							{
 								$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "\n[b]Administrator został poinformowany[/b]");
+								return;
 							}
 							else
 							{
 								$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "\n[b]Administratorzy zostali poinformowani[/b]");
+								return;
 							}
 						}
 						else

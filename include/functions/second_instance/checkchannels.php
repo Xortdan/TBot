@@ -7,6 +7,7 @@ function checkchannels()
 		global $channelcid;
 		global $channeltopic;
 		global $channels;
+		global $language;
 		$number = 0;
 		$number2 = 0;
 		$freechannelscount = 0;
@@ -36,7 +37,7 @@ function checkchannels()
 						(
 						'channel_name' => $channelname,
 						'channel_topic' => $config['function']['checkchannels']['channeltopic'],
-						'channel_description' => "[b][size=15]".$number.". Kanał wolny[/size][/b]".$footer,
+						'channel_description' => "[b][size=15]".$number.". ".$language['checkchannels']['freechannel']."[/size][/b]".$footer,
 						'cpid' => $config['function']['checkchannels']['channelzone'],
 						'channel_flag_permanent' => 1,
 						'channel_order' => $order,
@@ -72,7 +73,7 @@ function checkchannels()
 			}
 		}
 		$data = str_replace('[COUNT]', $number2, $config['function']['checkchannels']['channelzonename']);
-		$desc = "[b][size=15]Kanały zajęte: ".$descbusy."\nKanały wolne: ".$descfree."[/size][/b]";
+		$desc = "[b][size=15]".$language['checkchannels']['channelsoccupied'].": ".$descbusy."\n".$language['checkchannels']['freechannels'].": ".$descfree."[/size][/b]";
 		$tsAdmin->channelEdit($config['function']['checkchannels']['channelzone'], array
 							(
 							'channel_name' => $data,

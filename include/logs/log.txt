@@ -93,3 +93,277 @@ version: 0.0.5
 stopstart core3.php
 06-07-2018 14:21:54
 -----------------------------
+start core3.php
+version: 0.0.6
+
+06-07-2018 14:39:52
+-----------------------------
+restart
+06-07-2018 14:43:31
+-----------------------------
+stopstart core3.php
+07-07-2018 17:49:02
+-----------------------------
+start core3.php
+version: 0.0.6
+
+07-07-2018 17:51:13
+-----------------------------
+stopstart core1.php
+08-07-2018 12:48:52
+-----------------------------
+start core1.php
+version: 0.0.6
+
+08-07-2018 13:29:29
+-----------------------------
+stopstart core2.php
+08-07-2018 13:46:25
+-----------------------------
+start core2.php
+version: 0.0.6
+
+08-07-2018 14:25:08
+-----------------------------
+restart
+08-07-2018 15:41:47
+-----------------------------
+restart
+08-07-2018 15:52:51
+-----------------------------
+restart
+08-07-2018 15:52:59
+-----------------------------
+restart
+08-07-2018 20:37:14
+First instance restarted
+Second instance restarted
+Help bot restarted
+-----------------------------
+restart
+08-07-2018 20:37:53
+First instance restarted
+Second instance restarted
+Help bot restarted
+-----------------------------
+stopstart core2.php
+09-07-2018 10:33:42
+-----------------------------
+restart
+09-07-2018 11:22:23
+First instance restarted
+start core2.php
+Help bot restarted
+-----------------------------
+stopstart core3.php
+09-07-2018 11:22:41
+-----------------------------
+stopstart core2.php
+09-07-2018 11:22:57
+-----------------------------
+start core3.php
+version: 0.0.6
+
+09-07-2018 11:23:07
+-----------------------------
+start core2.php
+version: 0.0.6
+
+09-07-2018 11:30:28
+-----------------------------
+stopstart core2.php
+09-07-2018 11:30:38
+-----------------------------
+restart
+09-07-2018 11:56:12
+First instance restarted
+start core2.php
+Help bot restarted
+-----------------------------
+restart
+09-07-2018 11:58:46
+-----------------------------
+restart
+09-07-2018 11:59:19
+-----------------------------
+restart
+09-07-2018 12:00:45
+-----------------------------
+restart
+09-07-2018 12:02:28
+-----------------------------
+restart
+09-07-2018 12:04:40
+-----------------------------
+restart
+09-07-2018 12:05:39
+-----------------------------
+restart
+09-07-2018 12:06:20
+-----------------------------
+restart
+09-07-2018 12:06:48
+-----------------------------
+restart
+09-07-2018 12:07:07
+-----------------------------
+restart
+09-07-2018 12:07:10
+-----------------------------
+restart
+09-07-2018 12:07:29
+-----------------------------
+restart
+09-07-2018 12:07:59
+-----------------------------
+restart
+09-07-2018 12:08:44
+-----------------------------
+restart
+09-07-2018 12:09:11
+-----------------------------
+stopstart core2.php
+09-07-2018 13:26:16
+-----------------------------
+stop
+09-07-2018 13:38:49
+First instance stopped
+Help bot stopped
+-----------------------------
+start core2.php
+version: 0.0.6
+
+09-07-2018 14:26:22
+-----------------------------
+start core1.php
+version: 0.0.6
+
+09-07-2018 14:26:29
+-----------------------------
+restart
+09-07-2018 14:44:31
+First instance restarted
+Second instance restarted
+start core3.php
+-----------------------------
+stop
+09-07-2018 14:44:42
+First instance stopped
+Second instance stopped
+Help bot stopped
+-----------------------------
+restart
+09-07-2018 14:45:23
+start core1.php
+start core2.php
+start core3.php
+-----------------------------
+restart
+09-07-2018 14:46:01
+First instance restarted
+Second instance restarted
+Help bot restarted
+-----------------------------
+stopstart core2.php
+09-07-2018 14:46:39
+-----------------------------
+restart
+09-07-2018 14:47:15
+First instance restarted
+start core2.php
+Help bot restarted
+-----------------------------
+restart
+09-07-2018 14:49:40
+First instance restarted
+Second instance restarted
+Help bot restarted
+-----------------------------
+restart
+09-07-2018 14:50:16
+-----------------------------
+restart
+09-07-2018 15:03:36
+First instance restarted
+Second instance restarted
+Help bot restarted
+-----------------------------
+restart
+09-07-2018 16:27:59
+First instance restarted
+Second instance restarted
+Help bot restarted
+-----------------------------
+restart
+09-07-2018 16:35:35
+First instance restarted
+Second instance restarted
+Help bot restarted
+-----------------------------
+stop
+09-07-2018 16:44:19
+First instance stopped
+Second instance stopped
+Help bot stopped
+-----------------------------
+restart
+09-07-2018 16:46:07
+start core1.php
+start core2.php
+start core3.php
+-----------------------------
+stop
+09-07-2018 16:47:31
+First instance stopped
+Second instance stopped
+Help bot stopped
+-----------------------------
+restart
+09-07-2018 16:51:08
+start core1.php
+start core2.php
+start core3.php
+-----------------------------
+restart
+09-07-2018 16:53:21
+First instance restarted
+Second instance restarted
+Help bot restarted
+-----------------------------
+stopstart core1.php
+11-07-2018 13:44:23
+-----------------------------
+restart
+11-07-2018 13:44:30
+-----------------------------
+restart
+11-07-2018 13:44:37
+start core1.php
+Second instance restarted
+Help bot restarted
+-----------------------------
+stopstart core1.php
+12-07-2018 13:23:55
+-----------------------------
+restart
+12-07-2018 13:33:02
+-----------------------------
+start core1.php
+version: 0.0.6
+
+12-07-2018 13:33:11
+-----------------------------
+restart
+12-07-2018 13:35:50
+-----------------------------
+restart
+12-07-2018 13:42:32
+-----------------------------
+stopstart core1.php
+12-07-2018 13:42:40
+-----------------------------
+start core1.php
+version: 0.0.6
+
+12-07-2018 14:16:25
+-----------------------------

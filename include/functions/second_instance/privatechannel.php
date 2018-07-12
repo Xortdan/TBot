@@ -5,6 +5,7 @@ function privatechannel()
 		global $config;
 		global $tsAdmin;
 		global $user;
+		global $language;
 		$haschannel = false;
 		$number1 = 0;
 		$number2 = 0;
@@ -34,7 +35,7 @@ function privatechannel()
 			}
 			if($hasrang==false)
 			{
-				$tsAdmin->sendMessage(1, $clientid, "Zarejestruj się aby dostać prywatny kanał");
+				$tsAdmin->sendMessage(1, $clientid, $language['privatechannel']['register']);
 				return;
 			}
 			if($hasrang)
@@ -45,13 +46,13 @@ function privatechannel()
 					$haschannel = false;
 				}
 				else
-				{
+				{ 
 
 					for($i=0; $i<count($userchannelgroup['data']); $i++)
 					{
 						if($config['function']['privatechannel']['admingroup'] == $userchannelgroup['data'][$i]['cgid'])
 						{
-						$tsAdmin->clientPoke($clientid, "Posiadasz już prywatny kanał");
+						$tsAdmin->clientPoke($clientid, "[b]".$language['privatechannel']['haschannel']."[/b]");
 						$tsAdmin->clientMove($clientid, $userchannelgroup['data'][$i]['cid']);
 						$haschannel = true;
 						break;
@@ -78,13 +79,13 @@ function privatechannel()
 							(
 							'channel_topic' => $date,
 							'channel_name' => $number1.". ".$channelname,
-							'channel_description' => "[center][size=15][b]".$nick."[/b][/size]\n[size=12][color=blue]data utworzenia: ".$date."[/color][/size][/center]".$footer,
+							'channel_description' => "[center][size=15][b][img]https://www.iconfinder.com/icons/2123927/download/png/20[/img] ".$nick."[/b][/size]\n[size=12][color=blue][img]https://www.iconfinder.com/icons/2124097/download/png/20[/img] [b]".$language['privatechannel']['datecreated'].": ".$date."[/b][/color][/size][/center]".$footer,
 							'channel_flag_maxclients_unlimited'=>1, 
 							'channel_flag_maxfamilyclients_unlimited'=>1, 
 							'channel_flag_maxfamilyclients_inherited'=>0,
 							));
-							$tsAdmin->clientPoke($clientid, "Dostałeś kanał prywatny nr ".$number1);
-							$tsAdmin->clientPoke($clientid, $config['function']['privatechannel']['messageafter']);  
+							$tsAdmin->clientPoke($clientid, "[b]".$language['privatechannel']['getchannel']." ".$number1."[/b]");
+							$tsAdmin->clientPoke($clientid, "[b]".$config['function']['privatechannel']['messageafter']."[/b]");  
 							for($e=0; $e<$config['function']['privatechannel']['subchannels']; $e++)
 							{
 							$number2++;
@@ -108,7 +109,7 @@ function privatechannel()
 				}
 				if($free1==$free2)
 				{
-					$tsAdmin->clientPoke($clientid, "Brak wolnych kanałów");
+					$tsAdmin->clientPoke($clientid, "[b]".$language['privatechannel']['nofreechannels']."[/b]");
 					$tsAdmin->clientKick($clientid, "channel");
 				}
 			}

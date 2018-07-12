@@ -14,6 +14,9 @@ First instance
 - ban list
 - channels count
 - visitors count
+- average packetloss
+- average ping
+- uptime
 
 Second instance
 - group clients count
@@ -26,6 +29,11 @@ Second instance
 - month record
 - youtube channel info
 - welcome message
+- poke on channel
+- vpn detection
+- advertisement
+- bot info
+- ddos detection
 
 Help bot (thirded instance)
 Command
@@ -34,7 +42,7 @@ Command
 - group list
 - add server groups
 - del server groups
-- infomations about client
+- infomation about client
 - own commands
 
 Configuration is located in include/config/config.php
@@ -77,6 +85,13 @@ version 0.0.5
 version 0.0.6
 - new help bot - now the bot operates in private messages without delays, there is no limit of users using the bot
 
+version 0.0.7
+- translation has been added (except helpbot) - If you see any mistake in the translation send it to xortdan1998@gmail.com
+- in the useronline function from now it is possible to enable a list of users in the description
+- in the group clients count function, a list of users from this group has been added, along with their status
+- in the clientstatus function steam status has been added (optional)
+- new functions: average packetloss, average ping, uptime, poke on channel, vpn detection, advertisment, ddos detection and bot info (information about the status of the instance and the ram usage)
+- improved boot file
+
 # In the future I want add/change
-- language selection
 - new functions

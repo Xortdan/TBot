@@ -4,6 +4,7 @@ function register()
 		global $tsAdmin;
 		global $config;
 		global $user;
+		global $language;
 		$isregister = 0;
 		foreach($config['function']['register']['info'] as $channel)
 		{
@@ -21,14 +22,14 @@ function register()
 					{
 						$isregister = 1;
 						$tsAdmin->clientKick($clid, "channel");	
-						$tsAdmin->clientPoke($clid, "Jesteś już zarejestrowany(a)");
+						$tsAdmin->clientPoke($clid, $language['register']['isregistered']);
 					}
 				}
 				if($isregister==0)	
 				{
 					$tsAdmin->serverGroupAddClient($grou, $dbid);
 					$tsAdmin->clientKick($clid, "channel");
-					$tsAdmin->clientPoke($clid, "Zarejestrowano");
+					$tsAdmin->clientPoke($clid, $language['register']['registered']);
 				}
 
 			}
@@ -50,14 +51,14 @@ function register()
 					$isregister = 1;
 					$tsAdmin->serverGroupDeleteClient($config['function']['register']['allgroup'][$grou], $dbid);
 					$tsAdmin->clientKick($clid, "channel");	
-					$tsAdmin->clientPoke($clid, "Usunięto rangę");
+					$tsAdmin->clientPoke($clid, $language['register']['delrang']);
 					return;
 				}
 			}
 			if($isregister==0)	
 			{
 				$tsAdmin->clientKick($clid, "channel");
-				$tsAdmin->clientPoke($clid, "Nie jesteś zarejestrowany");
+				$tsAdmin->clientPoke($clid, $language['register']['noregisted']);
 			}
 
 		}  
