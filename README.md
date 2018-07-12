@@ -1,7 +1,7 @@
 # xTrustBot
 bot for server TeamSpeak 3
 
-Currently, the bot has 20 functions + help channel.
+Currently, the bot has 28 functions + help channel.
 
 First instance
 - day
