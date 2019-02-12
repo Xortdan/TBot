@@ -5,7 +5,6 @@ function youtube()
 		global $tsAdmin;
 		global $footer;
 		global $language;
-		
 		foreach($config['function']['youtube']['info'] as $channel)
 		{
 			$api = 'https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id='.$channel['youtubechannel'].'&key='.$config['function']['youtube']['youtubeapi'];
@@ -19,9 +18,13 @@ function youtube()
 			}
 			else
 			{
-				echo "Brak kanału";
 				$tsAdmin->channelEdit($channel['channelid'], Array('CHANNEL_DESCRIPTION'=> $language['youtube']['nochannel'].$footer,'CHANNEL_NAME'=> $language['youtube']['nochannel']));
 			}
-		 }
+		}
+		unset($api);
+		unset($channelyt);
+		unset($channelname);
+		unset($channel);
+		unset($http_response_header);
 	}
 ?>

@@ -11,11 +11,21 @@ function vpndetection()
 		{
 			if($client['client_database_id'] != 1)
 			{
-				$api = "http://check.getipintel.net/check.php?ip=".$client['connection_client_ip']."&contact=xortdan1998@gmail.com&format=json";
-				$checkvpn = json_decode(file_get_contents($api));
-				$result = $checkvpn->result;
+				$api = "http://proxycheck.io/v2/".$client['connection_client_ip']."?key=".$config['function']['vpndetection']['key']."&vpn=1";
+				//$api = "http://check.getipintel.net/check.php?ip=".$client['connection_client_ip']."&contact=xortdan1998@gmail.com&format=json";
+				//$checkvpn = json_decode();
+				//$result = $checkvpn;
+				echo file_get_contents($api);
+				$checkvpn = json_decode(json_encode(file_get_contents($api)), true);
+				$aa = Array();
+				foreach($checkvpn as $tak)
+				{
+					$aa[] = $tak;
+				}
 				
-				if($result > 0.995)
+				print_r($aa);
+				
+				/* if($result > 0.995)
 				{
 					$kick = false;
 					$groupclient = explode(',', $client['client_servergroups']);
@@ -27,11 +37,16 @@ function vpndetection()
 						}
 					}
 					if(!$kick)
-					$tsAdmin->clientKick($client['clid'], $kickMode = "server", $kickmsg = $language['vpndetection']['detection']);
+						$tsAdmin->clientKick($client['clid'], $kickMode = "server", $kickmsg = $language['vpndetection']['detection']);
 					
-				} 
+				}  */
 			}
 			
 		 }
+		//unset($api);
+		//unset($checkvpn);
+		//unset($result);
+		//unset($kick);
+		//unset($groupclient);
 	}
 ?>

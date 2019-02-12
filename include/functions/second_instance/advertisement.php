@@ -9,5 +9,6 @@ function advertisement()
 	$message = str_replace('[max]', $serverInfo['virtualserver_maxclients'], $message);
 	$tsAdmin->sendMessage(3, $serverInfo['virtualserver_id'], $message);
 	
+	unset($message);
 }
 ?>

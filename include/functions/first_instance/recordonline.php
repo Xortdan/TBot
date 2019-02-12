@@ -5,6 +5,7 @@ function recordonline()
 		global $tsAdmin;
 		global $record;
 		global $online;
+		global $footer;
 		if($record !=null)
 		{
 			if($online>$record)
@@ -25,7 +26,10 @@ function recordonline()
 		$check = $tsAdmin-> channelInfo($config['function']['recordonline']['channel']);
 		if(strcmp($check['data']['channel_name'], $data) != 0)
 		{
-			$tsAdmin->channelEdit($config['function']['recordonline']['channel'], Array('CHANNEL_NAME'=> $data));
+			$time = filemtime("include/cache/record.txt"); 
+			$date = date("G:i d.m.Y", $time);
+			$desc = "[CENTER][SIZE=15][B]REKORD\n[COLOR=GREEN]".$record."[/COLOR]\n".$date."[/B][/SIZE][/CENTER]".$footer;
+			$tsAdmin->channelEdit($config['function']['recordonline']['channel'], Array('CHANNEL_NAME'=> $data, 'CHANNEL_DESCRIPTION' => $desc));
 		}
 	}
 ?>

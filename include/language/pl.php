@@ -31,6 +31,7 @@ $language['checkchannels']['channelsoccupied'] = "Kanały zajęte";
 $language['checkchannels']['freechannels'] = "Kanały wolne";
 
 $language['clientstatus']['lastconnection'] = "Ostatnie połączanie";
+$language['clientstatus']['activeby'] = "Aktywny przez";
 $language['clientstatus']['lastseen'] = "Ostatnio widziany";
 $language['clientstatus']['connections'] = "Widziany łącznie";
 $language['clientstatus']['busy'] = "Zajęty";
@@ -54,11 +55,17 @@ $language['pokeonchannel']['aware2'] = "Administratorzy zostali poinformowani";
 
 $language['vpndetection']['detection'] = "Wykryto vpn";
 
+$language['top_connections']['connections'] = "Widziany łącznie";
+
+
+
+
+
 $language['botinfo']['instance'] = "instacja";
 $language['botinfo']['on'] = "włączona";
 $language['botinfo']['off'] = "wyłączona";
 $language['botinfo']['ramusage'] = "Zużycie ramu";
-$language['botinfo']['together'] = "Łącznie";
+$language['botinfo']['together'] = "Łączne zużycie ramu";
 
 
 

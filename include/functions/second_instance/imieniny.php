@@ -375,5 +375,8 @@ $name = Array(
 		
 		$data = str_replace('[NAME]', $name[$date], $config['function']['imieniny']['channelname']);
 		$tsAdmin->channelEdit($config['function']['imieniny']['channel'], array('channel_name' => $data));
+		unset($date);
+		unset($data);
+		unset($name);
 }
 ?>

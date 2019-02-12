@@ -1,5 +1,5 @@
 <?php 
-function banlist()
+	function banlist()
 	{
 		global $footer;
 		global $config;
@@ -64,9 +64,9 @@ function banlist()
 						$to = $ban['created']+$ban['duration'];
 						$to = date("d.m.o G:s",$to);
 					}
-		
+					
 					$created = date("j.m.o H:s",$ban['created']);
-				$list2.='[size=12][color=blue]'.$nban.'.[/color] [b]'.$ban['lastnickname'].'[/b][/size][hr]\n[size=10]'."[img]https://www.iconfinder.com/icons/2123927/download/png/20[/img] ".$language['banlist']['by'].': [URL=client://0/'.$ban['invokeruid'].'~'.$ban['invokername'].']'.$ban['invokername'].'[/URL]'
+					$list2.='[size=12][color=blue]'.$nban.'.[/color] [b]'.$ban['lastnickname'].'[/b][/size] ['.$ban['banid'].'][hr]\n[size=10]'."[img]https://www.iconfinder.com/icons/2123927/download/png/20[/img] ".$language['banlist']['by'].': [URL=client://0/'.$ban['invokeruid'].']'.$ban['invokername'].'[/URL]'
 					.'\n[img]https://www.iconfinder.com/icons/2124294/download/png/20[/img] '.$language['banlist']['reason'].': '.$ban['reason'].'\n[img]https://www.iconfinder.com/icons/2124097/download/png/20[/img] '.$language['banlist']['duration'].': '.$duration
 					.'\n[img]https://www.iconfinder.com/icons/809573/download/png/20[/img] '.$language['banlist']['from'].': '.$created.'\n[img]https://www.iconfinder.com/icons/809573/download/png/20[/img] '.$language['banlist']['to'].': '.$to.'[/size]\n\n';
 					$nban++;
@@ -83,9 +83,13 @@ function banlist()
 		));
 		if($config['function']['banlist']['channel_name_enable'])
 		{
-		$tsAdmin->channelEdit($config['function']['banlist']['channel'], array(
-		'channel_name' =>$channelname
-		));
+			$check = $tsAdmin-> channelInfo($config['function']['banlist']['channel']);
+			if(strcmp($check['data']['channel_name'], $channelname) != 0)
+			{
+				$tsAdmin->channelEdit($config['function']['banlist']['channel'], array(
+				'channel_name' =>$channelname
+				));
+			}
 		}
 	}
 ?>

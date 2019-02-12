@@ -8,7 +8,7 @@
 		foreach($config['function']['groupclientcount']['info'] as $channel)
 		{	
 		$countclientgroup = 0;
-			$r=0;
+			$r = 0;
 			$list = "";
 			$group = $channel['group'];
 			$groupname = groupname($group);
@@ -34,7 +34,11 @@
 			$channelname = str_replace('[ONLINE]', $countclientgroup, $channel['channelname']);
 			$channelname = str_replace('[MAX]', $countclientsnumber, $channelname);
 			$channelname = str_replace('[RANG]', $groupname, $channelname);
-			$channeldescription = "[size=15][b][color=blue]".$groupname."[/color][/b][/size][hr]\n".$list.$footer;
+			if($config[2]['bot']['icons']['enable'])
+			{
+				$channeldescription = "[img]".$config[2]['bot']['icons']['adress'].$group.".png[/img] ";
+			}
+			$channeldescription .= "[size=15][b][color=blue]".$groupname."[/color][/b][/size][hr]\n".$list.$footer;
 			$check = $tsAdmin-> channelInfo($channel['channel']);
 			if(strcmp($channelname, $check['data']['channel_name']) != 0)
 			{
@@ -43,5 +47,22 @@
 			}
 			
 		} 
+		unset($countclientgroup);
+		unset($r);
+		unset($list);
+		unset($group);
+		unset($groupname);
+		unset($groupclients);
+		unset($countclientsnumber);
+		unset($nick);
+		unset($nick_array);
+		unset($status);
+		unset($countclientgroup);
+		unset($channelname);
+		unset($channeldescription);
+		unset($channel);
+		unset($names);
+		unset($client);
+		unset($check);
 	}
 ?>

@@ -16,8 +16,6 @@ function helpchannel()
 	$isregisted = false;
 	$user = $tsAdmin->clientList("-uid -away -voice -times -groups -info -icon -country -ip -badges");
 	$correct = false;
-	$admincount = 0;
-	$admincount2 = 0;
 	$number	= 0;
 	$number2 = 0;
 	$number3 = 0;
@@ -26,7 +24,10 @@ function helpchannel()
 	$commandcommand = "[b]".$config['function']['helpchannel']['commandlist']."[/b] - lista komend";
 	$commandgrouplist = "[b]".$config['function']['helpchannel']['grouplist']."[/b] - lista dostępnych grup";
 	$grouplist = "\n";
-	$commands = Array($commandcommand,'[b]!admin[/b] - wezwij admina', $commandgrouplist, '[b]!add [nr grupy][/b] - nadaj rangę, np. [b]!add 22[/b]', '[b]!del [nr grupy][/b] - zabierz rangę, np. [b]!del 22[/b]', "[b]!info[/b] - informacje o połączeniu");
+	
+	$connect = mysqli_connect($config[4]['database']['host'], $config[4]['database']['login'], $config[4]['database']['password'], $config[4]['database']['dbname']);
+	
+	$commands = Array($commandcommand,'[b]!admin[/b] - wezwij admina', "[b]!msg_admins[/b] - zostaw wiadomość do administracji, jeśli nie ma jej aktualnie na serwerze",$commandgrouplist, '[b]!add [nr grupy][/b] - nadaj rangę, np. [b]!add 22[/b]', '[b]!del [nr grupy][/b] - zabierz rangę, np. [b]!del 22[/b]', "[b]!info[/b] - informacje o połączeniu");
 	foreach($commands as $command)
 	{
 		$number++;
@@ -52,7 +53,6 @@ function helpchannel()
 	$whoami = $tsAdmin->getElement('data', $tsAdmin->whoAmI());
 	
 	$clientonchannel = array_keys(array_column($user['data'], 'cid'), $config['function']['helpchannel']['channel']);
-	
 	
 	//send msg
 	if(!isset($clientonchannel[0]))
@@ -84,14 +84,16 @@ function helpchannel()
 			}
 		}
 	}
-	
-	foreach($clientonchannel2 as $userid)
+	if(isset($clientonchannel2))
 	{
-		$id = $userid['userid'];
-		if($user['data'][$id]['cid'] != $config['function']['helpchannel']['channel'])
-			{
-				unset($clientonchannel2[$id]);
-			} 
+		foreach($clientonchannel2 as $userid)
+		{
+			$id = $userid['userid'];
+			if($user['data'][$id]['cid'] != $config['function']['helpchannel']['channel'])
+				{
+					unset($clientonchannel2[$id]);
+				} 
+		}
 	}
 	
 	
@@ -143,6 +145,8 @@ function helpchannel()
 					{
 						if(ready($loopdate2, $config['function']['helpchannel']['datazeroadmin'], 30) == true)
 						{
+							$admincount = 0;
+							$admincount2 = 0;
 							$config['function']['helpchannel']['datazeroadmin'] = $loopdate2;
 							foreach($config['function']['helpchannel']['admingroup'] as $group)
 							{
@@ -156,7 +160,9 @@ function helpchannel()
 										if(!in_array($admin['data']['cid'], $config['function']['helpchannel']['ignoredonchannel']))
 										{
 											$admincount++;
-											$pokemessage = str_replace('[NICK]', $message['data']['invokername'], $config['function']['helpchannel']['adminpokemessage']);
+											$message['data']['invokeruid'];
+										$client_link_profile = "[URL=client://0/".$message['data']['invokeruid']."]".$message['data']['invokername']."[/URL]";
+											$pokemessage = str_replace('[NICK]', $client_link_profile, $config['function']['helpchannel']['adminpokemessage']);
 											$tsAdmin->clientPoke($find['data'][0]['clid'], $pokemessage);
 										}
 										else
@@ -179,7 +185,7 @@ function helpchannel()
 							}
 							else if($admincount == 0)
 							{
-								$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "\n[b]Brak administracji na serwerze[/b]");	
+								$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "\n[b]Brak administracji na serwerze! Zostaw wiadomość korzystając z komendy !msg_admins[/b]");	
 								return;
 							}
 							else if($admincount == 1)
@@ -199,6 +205,88 @@ function helpchannel()
 						}
 				
 						return;
+					}
+					
+	//!msg_admins
+					
+					if(strpos(strtoupper($msg), strtoupper("!msg_admins")) !== false && $config['function']['helpchannel']['msgtoadminenable'])
+					{
+						$msg = str_ireplace("!msg_admins", "", $msg);
+						$admincount = 0;
+						foreach($config['function']['helpchannel']['admingroup'] as $group)
+						{
+							$groupclient = $tsAdmin->serverGroupClientList($group, $names = true);	
+							foreach($groupclient['data'] as $groupclient)
+							{
+								$find = $tsAdmin->clientFind($groupclient['client_nickname']);
+								if($find['data'])
+								{
+									$admin = $tsAdmin-> clientInfo($find['data'][0]['clid']);
+									if(!in_array($admin['data']['cid'], $config['function']['helpchannel']['ignoredonchannel']))
+									{
+										$admincount++;
+									}
+								}
+							}
+						}
+						if($admincount == 0)
+						{
+							if($msg != "")
+							{
+								if(strlen($msg) <= 200)
+								{
+									$channel_info = $tsAdmin -> channelInfo($config['function']['helpchannel']['msgtoadminchannel']);
+									$channel_desc = $channel_info['data']['channel_description'];
+									$i = 1;
+									$desc = "[center][b][size=13][color=green]WIADOMOŚĆI DO ADMINISTRACJI[/color][/size][/b][/center]\n\n";
+					
+									$question = "SELECT * FROM problems WHERE DBID = ".$client['client_database_id'];	
+									$problems = mysqli_query($connect, $question);
+						
+									if(mysqli_num_rows($problems) == 0)
+									{
+										mysqli_query($connect, "UPDATE problems set number = number + 1");
+										$question = "INSERT INTO problems(`number`, `nickname`, `DBID`, `UID`, `problem`, `time`) VALUES(1, '".$client['client_nickname']."', ".$client['client_database_id'].", '".$client['client_unique_identifier']."', '".$msg."', ".time().");";
+										mysqli_query($connect, $question);
+									}
+									else
+									{
+										$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "\n[b]Wysłałeś juz wiadomość[/b]");
+									}
+							
+										if($config['function']['helpchannel']['msgtoadmindelete'])
+										{
+											$question = "DELETE FROM problems WHERE number > ".$config['function']['helpchannel']['msgtoadminmax'];
+											mysqli_query($connect, $question);
+										}
+						
+									$question = "SELECT nickname, DBID, UID, time, problem FROM problems ORDER BY number LIMIT ".$config['function']['helpchannel']['msgtoadminmax'];
+									$problems = mysqli_query($connect, $question);
+						
+									while($row=mysqli_fetch_array($problems))
+									{
+										$desc .= $i.". [b]Nick: [/b][URL=client://1/".$row['UID']."]".$row['nickname']."[/URL], [b]DBID:[/b] ".$row['DBID'].", [b]".date('H:i d.m.Y', $row['time'])."[/b]\n[b]Wiadomość:[/b] ".$row['problem']."[hr]\n";
+										$i++;
+									}
+									$tsAdmin -> channelEdit($config['function']['helpchannel']['msgtoadminchannel'], Array('CHANNEL_DESCRIPTION'=> $desc.$footer));
+									$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "\n[b]Wysłano[/b]");
+								}
+								else
+								{
+									$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "\n[b]Maksymalna liczba zanaków to 200![/b]");
+								}
+							}
+							else
+							{
+								$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "\n[b]Podaj wiadomość[/b]");
+							}
+						}
+						else
+						{
+							$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "\n[b]Administracja znajduje się na serwerze! użyj komendy !admin[/b]");
+						}
+						return;
+						
 					}
 					
 	//!group list
@@ -303,8 +391,16 @@ function helpchannel()
 						"Unique ID: ".$client['client_unique_identifier']."\n".
 						"IP: ".$client['connection_client_ip']."\n".
 						"Pierwsze połączenie: ".date('Y-m-d G:i:s', $client['client_created'])."\n".
-						"Platforma: ".$client['client_platform']."\n".
-						"Kraj: ".$client['client_country']."[/b]\n";
+						"Platforma: ".$client['client_platform'].
+						"Kraj: ".$client['client_country']."\n";
+						if($config['function']['helpchannel']['profilelinkenable'])
+						{
+							$clientinfo .= "Profil: [url=".$config['function']['helpchannel']['profilelink']."/stats.php?user=".$client['client_database_id']."]Link[/url][/b]";	
+						}
+						else
+						{
+							$clientinfo .= "[/b]";
+						}
 						$tsAdmin -> sendMessage(1, $message['data']['invokerid'], $clientinfo);
 						return;
 					}
@@ -316,13 +412,57 @@ function helpchannel()
 						return;		
 					}
 					
+	//ban on channel
+					if(strpos(strtoupper($msg), strtoupper("!ban")) !== false)
+					{	
+						$comm = explode(" ", $msg);
+						$isadminonchannel = false;
+						if(isset($comm[1]) && isset($comm[2]) && is_numeric($comm[1]) && is_numeric($comm[1]) && $comm[1] != 1)
+						{
+							foreach($config['function']['helpchannel']['channeladmingroups'] as $group)
+							{
+								$checkgroup = $tsAdmin -> channelGroupClientList($comm[2], $client['client_database_id'], $group);
+								if(isset($checkgroup['data'][0]))
+								{
+									$isadminonchannel = true;
+								}
+							}
+							if($isadminonchannel)
+							{
+								$checkgroup = $tsAdmin -> channelGroupClientList($comm[2], $comm[1], $config['function']['helpchannel']['bangroup']);
+								if(!isset($checkgroup['data'][0]))
+								{
+									$tsAdmin -> channelGroupAddClient($config['function']['helpchannel']['bangroup'], $comm[2], $comm[1]);
+									$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "[b]Zbanowano[/b]");
+									return;	
+								}
+								else
+								{
+									$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "[b]Wybrany użytkownik posiada już na twoim kanale bana[/b]");
+									$tsAdmin->gm('ada');
+									return;	
+								}
+							}
+							else
+							{
+								$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "[b]Nie jesteś administratorem na tym kanale![/b]");
+								return;	
+							}
+						}
+						else
+						{
+							$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "[b]Podaj poprawną wartość! !ban [dbid] [cid][/b]");
+							return;	
+						}						
+					}
+					
 					if(!$correct)
 					{
 					foreach($config['function']['helpchannel']['info'] as $command)
 					{
 						if($command['command'] == $msg)
 						{
-							$tsAdmin -> sendMessage(1, $message['data']['invokerid'], $command['message']);
+							$tsAdmin -> sendMessage(1, $message['data']['invokerid'], substr($command['message'],0,1024));
 							return;
 						}
 					}	

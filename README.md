@@ -1,5 +1,5 @@
-# TBot
-Bot for server TeamSpeak 3
+# xTrustBot
+bot for server TeamSpeak 3
 
 Currently, the bot has 28 functions + help channel.
 

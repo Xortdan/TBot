@@ -27,6 +27,13 @@ function timechannel()
 			));	
 	}
 	
-	}	
+	}
+	unset($day);
+	unset($month);
+	unset($year);	
+	unset($timeon);
+	unset($timeoff);
+	unset($dateon);
+	unset($dateoff);
 }
 ?>

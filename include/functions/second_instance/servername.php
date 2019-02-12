@@ -13,6 +13,8 @@ function servername()
 		if(strcmp($check, $data) != 0)
 		{
 		$tsAdmin->serverEdit(array('virtualserver_name' => $data));	
-		} 
+		}
+		unset($max);
+		unset($check);
 	}
 ?>

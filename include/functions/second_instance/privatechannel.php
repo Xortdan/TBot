@@ -72,14 +72,16 @@ function privatechannel()
 						if($channel['channel_topic'] == $config['function']['privatechannel']['channeltopic'])
 						{
 							$channelname = str_replace('[NICK]', $nick, $config['function']['privatechannel']['channelname']);
+							$channelname = $number1.". ".$channelname;
+							$channelname = substr($channelname,0,40);
 							$date = date("d.m.o");
 							$tsAdmin->clientMove($clientid, $channel['cid']);
 							$tsAdmin->channelGroupAddClient($config['function']['privatechannel']['admingroup'], $channel['cid'], $clientdbid);
 							$tsAdmin->channelEdit($channel['cid'], array
 							(
 							'channel_topic' => $date,
-							'channel_name' => $number1.". ".$channelname,
-							'channel_description' => "[center][size=15][b][img]https://www.iconfinder.com/icons/2123927/download/png/20[/img] ".$nick."[/b][/size]\n[size=12][color=blue][img]https://www.iconfinder.com/icons/2124097/download/png/20[/img] [b]".$language['privatechannel']['datecreated'].": ".$date."[/b][/color][/size][/center]".$footer,
+							'channel_name' => $channelname,
+							'channel_description' => "[center][size=15][b][img]https://www.iconfinder.com/icons/2123927/download/png/20[/img] ".$nick."[/b][/size]\n[size=12][color=purple][img]https://www.iconfinder.com/icons/2124097/download/png/20[/img] [b]".$language['privatechannel']['datecreated'].": ".$date."[/b][/color][/size][/center]".$footer,
 							'channel_flag_maxclients_unlimited'=>1, 
 							'channel_flag_maxfamilyclients_unlimited'=>1, 
 							'channel_flag_maxfamilyclients_inherited'=>0,
@@ -114,5 +116,19 @@ function privatechannel()
 				}
 			}
 		}
+		
+		unset($haschannel);
+		unset($number1);
+		unset($number2);
+		unset($free1);
+		unset($free2);
+		unset($hasrang);
+		unset($clientinchannel);
+		unset($servergroupclient);
+		unset($clientdbid);
+		unset($clientid);
+		unset($nick);
+		unset($channels);
+		unset($channelname);
 	}
 ?>

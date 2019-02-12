@@ -5,6 +5,7 @@ function pokeonchannel()
 		global $tsAdmin;
 		global $user;
 		global $language;
+		
 		foreach($config['function']['pokeonchannel']['info'] as $pokeid)
 		{
 			$admincount = 0;
@@ -62,5 +63,12 @@ function pokeonchannel()
 				
 			}
 		}
+		unset($admincount);
+		unset($admincount2);
+		unset($clientonchannel);
+		unset($groupclients);
+		unset($client);
+		unset($admin);
+		unset($pokemessage);
 	}
 ?>
