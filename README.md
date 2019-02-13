@@ -1,7 +1,7 @@
 # Tbot
 bot for server TeamSpeak 3
 
-Currently, the bot has 28 functions + help channel.
+Currently, the bot has 50 functions + help channel, admins command and control bot.
 
 First instance
 - admis list
@@ -27,6 +27,7 @@ Second instance
 - game server info
 - twitch stauts
 - youtube status
+- nick control
 - group clients count
 - get private channel
 - check private channels
@@ -130,7 +131,7 @@ version 0.1.0 (12.0.2.2019)
 - instances have been optimized
 - from now, each instance saves information in the file (using the ram and the number of functions enabled)
 - in the screen view you can check the last wear of the ram using the command "screen -r tBotx". Where x, enter the instance number (For bot control, enter "C"). In control bot, the last actions are displayed in the preview.
-- new functions: admis list, generate banner, channel zone client count, antyrecording, game server info, twitch stauts, youtube status, new users list, rank, top all of the time, month and week (active, idle and together), top rank
+- new functions: admis list, generate banner, channel zone client count, antyrecording, game server info, twitch stauts, youtube status, nick control, new users list, rank, top all of the time, month and week (active, idle and together), top rank
 - now anty vpn don't work
 
 # In the future I want add/change
